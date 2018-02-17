@@ -6,9 +6,16 @@
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~mdbootstrap/css/bootstrap';
+@import '~mdbootstrap/sass/mdb.scss';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+.navbar .dropdown-menu a:hover {
+  background-color: #59698d!important;
+  color: #FFFFFF!important;
+}
+#social-logins a {
+  border: 2px solid #3F729B;
+  color: #1C2A48 !important;
+  //width: 100%;
 }
