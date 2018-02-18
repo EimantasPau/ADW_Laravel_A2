@@ -30,6 +30,11 @@
                                 </span>
                             @endif
                         </div>
+                        @if ($errors->has('socialError'))
+                            <span class="ml-5">
+                                <strong>{{ $errors->first('socialError') }}</strong>
+                            </span>
+                        @endif
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary waves-effect">Login</button>
                         </div>
@@ -40,10 +45,10 @@
                         <div class="col-md-12" id="social-logins">
                             <p class="text-uppercase text-center"> Or login with:</p>
                             <div class="text-center">
-                                <a href="" class="btn btn-outline-primary "><i class="fab fa-2x fa-facebook-square"></i> Facebook</a>
+                                <a href="{{url('/oauth/facebook')}}" class="btn btn-outline-primary "><i class="fab fa-2x fa-facebook-square"></i> Facebook</a>
                             </div>
                             <div class="text-center">
-                                <a href="" class="btn btn-outline-primary"><i class="fab fa-2x fa-google"></i> Google</a>
+                                <a href="{{url('/oauth/google')}}" class="btn btn-outline-primary"><i class="fab fa-2x fa-google"></i> Google</a>
                             </div>
                             <div class="text-center">
                                 <a href="" class="btn btn-outline-primary"><i class="fab fa-2x fa-twitter"></i> Twitter</a>
