@@ -21,3 +21,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function() {
+    $('#productList').DataTable();
+    $("select[name='productList_length']").css({"height": "100%"});
+});

@@ -17,7 +17,7 @@
     <div id="app">
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3">
            <div class="container-fluid">
-               <a class="navbar-brand" href="#">Search and discover.</a>
+               <a class="navbar-brand" href="/">Search and discover.</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
                </button>
@@ -49,6 +49,7 @@
                                {{ Auth::user()->name }} <span class="caret"></span>
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               <a href="{{route('admin.home')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-lock"></i> Admin dashboard</a>
                                <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
                                <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-cogs"></i> Settings</a>
                                <a class="dropdown-item waves-effect waves-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Log out</a>
