@@ -11,7 +11,6 @@
 |
 */
 
-
 Auth::routes();
 
 //Social logins
@@ -20,3 +19,7 @@ Route::get('oauth/{driver}/callback', 'SocialAuthController@handleProviderCallba
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/test', function() {
+    Debugbar::info('Hello');
+});

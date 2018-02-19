@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+
+
+use Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -54,10 +57,11 @@ class SocialAuthController extends Controller
     {
         try {
             $user = Socialite::driver($driver)->user();
+//            dd($user);
         } catch (Exception $e) {
             return $this->sendFailedResponse($e->getMessage());
         }
-        $this->loginOrCreateAccount($user, $driver);
+        return $this->loginOrCreateAccount($user, $driver);
     }
 
 
@@ -74,7 +78,8 @@ class SocialAuthController extends Controller
                 'avatar' => $providerUser->avatar,
                 'provider' => $driver,
                 'provider_id' => $providerUser->id,
-                'access_token' => $providerUser->token
+                'access_token' => $providerUser->token,
+                'avatar_url' => $providerUser->getAvatar(),
             ]);
         } else {
             // create a new user
@@ -83,6 +88,7 @@ class SocialAuthController extends Controller
                 'email' => $providerUser->getEmail(),
                 'provider' => $driver,
                 'provider_id' => $providerUser->getId(),
+                'avatar_url' => $providerUser->getAvatar(),
                 // user can use reset password to create a password
                 'password' => ''
             ]);
@@ -90,7 +96,6 @@ class SocialAuthController extends Controller
 
         // login the user
         Auth::login($user, true);
-
         return redirect('/#');
     }
     /**
