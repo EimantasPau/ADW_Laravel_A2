@@ -14,9 +14,7 @@
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
                             <label for="name">Your name</label>
                             @if ($errors->has('name'))
-                            <span class="invalid-feedback ml-5">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
+                            <span class="red-text ml-5">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="md-form">
@@ -24,9 +22,7 @@
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
                             <label for="email">Your email</label>
                             @if ($errors->has('email'))
-                            <span class="invalid-feedback ml-5">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
+                            <span class="red-text ml-5">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="md-form">
@@ -34,9 +30,7 @@
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
                             <label for="password">Your password</label>
                             @if ($errors->has('password'))
-                                <span class="invalid-feedback ml-5">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
+                                <span class="red-text ml-5">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
                         <div class="md-form">

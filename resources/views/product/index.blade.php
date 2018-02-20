@@ -13,19 +13,36 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Name</th>
-
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
                     </tr>
                     </tfoot>
                     <tbody>
+                    @if($products)
+                        @foreach($products as $product)
                     <tr>
-                        <td>Name </td>
+                        <td>{{$product->name}}</td>
+                        <td>£{{$product->price}}</td>
+                        <td>{{$product->quantity}}</td>
+                        <td class="d-flex justify-content-between">
+                            <a href=""><i class="fas fa-2x fa-eye"></i></a>
+                            <a href=""><i class="far fa-2x fa-edit cyan-text"></i></a>
+                            <a href=""><i class="fas fa-2x fa-trash-alt red-text"></i></a>
+                        </td>
                     </tr>
+                        @endforeach
+                        @else
+                    <tr>There are currently no products</tr>
+                    @endif
                     </tbody>
                 </table>
             </div>

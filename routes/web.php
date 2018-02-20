@@ -24,6 +24,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
     Route::get('/products', 'ProductController@index')->name('product.index');
     Route::get('/product', 'ProductController@create')->name('product.create');
-    Route::post('/product', 'ProductController@store');
+    Route::post('/product', 'ProductController@store')->name('product.store');
 });
 

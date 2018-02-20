@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product.index');
+        $products = Product::all();
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -34,7 +37,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|digits_between:1,6',
+            'quantity' => 'required|digits_between:1,5',
+            'image_path' => 'required',
+        ]);
+
+        $image = $request->file('image_path');
+        $image_path = Storage::putFile('products', $image);
+        $product = new Product;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->image_path = $image_path;
+        $product->save();
+
+        return redirect()->route('product.index');
     }
 
     /**

@@ -15,9 +15,7 @@
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
                             <label for="email">Your email</label>
                             @if ($errors->has('email'))
-                                <span class="invalid-feedback ml-5">
-                                <strong>{{ $errors->first('email') }}</strong>
-                                </span>
+                                <span class="red-text ml-5">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="md-form">
@@ -25,15 +23,11 @@
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
                             <label for="password">Your password</label>
                             @if ($errors->has('password'))
-                                <span class="invalid-feedback ml-5">
-                                <strong>{{ $errors->first('password') }}</strong>
-                                </span>
+                                <span class="red-text ml-5">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
                         @if ($errors->has('socialError'))
-                            <span class="ml-5">
-                                <strong>{{ $errors->first('socialError') }}</strong>
-                            </span>
+                            <span class="red-text ml-5">{{ $errors->first('socialError') }}</span>
                         @endif
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary waves-effect">Login</button>
