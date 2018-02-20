@@ -35,27 +35,31 @@
 
             <!-- Product card-->
             <div class="col-lg-9">
+                @foreach($products->chunk(4) as $chunk)
                 <div class="row">
+                    @foreach($chunk as $product)
                     <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="card mb-r wow fadeIn " data-wow-delay="0.4s">
-                            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/16.jpg" alt="Card image cap">
+                            <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="font-bold">
-                                    <strong>Product title</strong>
+                                    <strong>{{$product->name}}</strong>
                                     <div class="badge badge-info">New</div>
                                 </h5>
                                 <hr>
                                 <h4>
-                                    <strong>150$</strong>
+                                    <strong>£{{$product->price}}</strong>
                                 </h4>
-                                <p class="card-text mt-4">Some quick example text to build on the card title.
+                                <p class="card-text mt-4">{{$product->description}}
                                 </p>
                                 <a href="#" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </a>
                                 <a href="#" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
+                @endforeach
             </div>
             <!--/Product card-->
         </div>

@@ -25,5 +25,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/products', 'ProductController@index')->name('product.index');
     Route::get('/product', 'ProductController@create')->name('product.create');
     Route::post('/product', 'ProductController@store')->name('product.store');
+    Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
 });
 
