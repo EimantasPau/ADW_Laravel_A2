@@ -7,6 +7,10 @@
             Products
         </div>
         <div class="card-body">
+            @if($message = session('successMessage'))
+                {{--<span class="badge primary-color-dark" style="font-size:1rem;"> {{$message}}</span>--}}
+                <p class="blue-text">{{$message}}</p>
+            @endif
             <a href="{{route('product.create')}}" class="btn btn-outline-success waves-effect float-right"><i class="fas fa-plus"></i> Add product</a>
             <div class="dataTables_wrapper">
                 <table id="productList" class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">

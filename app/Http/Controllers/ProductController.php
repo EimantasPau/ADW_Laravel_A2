@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -54,7 +55,7 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         $product->image_path = $image_path;
         $product->save();
-
+        Session::flash('successMessage', 'You have successfully created a product!');
         return redirect()->route('product.index');
     }
 
@@ -110,6 +111,7 @@ class ProductController extends Controller
         }
 
         $product->save();
+        Session::flash('successMessage', 'You have successfully updated the product!');
         return redirect()->route('product.index');
     }
 
@@ -124,6 +126,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         Storage::delete($product->image_path);
         Product::destroy($id);
+        Session::flash('successMessage', 'Product has been deleted.');
         return redirect()->route('product.index');
     }
 }
