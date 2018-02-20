@@ -35,31 +35,39 @@
 
             <!-- Product card-->
             <div class="col-lg-9">
+                {{--Showing 21 to 30 of 54 entries--}}
+                <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
+                {{ $products->links() }}
                 @foreach($products->chunk(4) as $chunk)
-                <div class="row">
+                <div class="row d-flex align-items-stretch">
                     @foreach($chunk as $product)
                     <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="card mb-r wow fadeIn " data-wow-delay="0.4s">
+                        <div class="card mb-r wow fadeIn" data-wow-delay="0.4s">
                             <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="font-bold">
                                     <strong>{{$product->name}}</strong>
-                                    <div class="badge badge-info">New</div>
+                                    @if($product->quantity > 0)
+                                    <div class="badge badge-info">In stock</div>
+                                        @else
+                                        <div class="badge badge-danger">Out of stock</div>
+                                    @endif
                                 </h5>
                                 <hr>
                                 <h4>
                                     <strong>£{{$product->price}}</strong>
                                 </h4>
-                                <p class="card-text mt-4">{{$product->description}}
+                                <p class="card-text mt-4">{{str_limit($product->description, 100, '...')}}
                                 </p>
-                                <a href="#" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </a>
                                 <a href="{{route('product.show', $product->id)}}" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
+                                <a href="#" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </a>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
                 @endforeach
+                {{ $products->links() }}
             </div>
             <!--/Product card-->
         </div>
