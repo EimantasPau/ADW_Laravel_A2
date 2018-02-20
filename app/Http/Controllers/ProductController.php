@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product.index', compact('products'));
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('admin.product.create');
     }
 
     /**
@@ -66,7 +66,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('admin.product.show', compact('product'));
     }
 
     /**
@@ -77,7 +78,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('admin.product.edit', compact('product'));
     }
 
     /**
@@ -89,7 +91,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|digits_between:1,6',
+            'quantity' => 'required|digits_between:1,5'
+        ]);
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+
+        if($image = $request->file('image_path')){
+            Storage::delete($product->image_path);
+            $image_path = Storage::putFile('products', $image);
+            $product->image_path = $image_path;
+        }
+
+        $product->save();
+        return redirect()->route('product.index');
     }
 
     /**
@@ -100,6 +121,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $product = Product::findOrFail($id);
+        Storage::delete($product->image_path);
         Product::destroy($id);
         return redirect()->route('product.index');
     }

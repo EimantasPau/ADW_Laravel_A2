@@ -53,7 +53,7 @@
                                 <p class="card-text mt-4">{{$product->description}}
                                 </p>
                                 <a href="#" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </a>
-                                <a href="#" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
+                                <a href="{{route('product.show', $product->id)}}" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
                             </div>
                         </div>
                     </div>

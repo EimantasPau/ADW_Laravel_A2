@@ -34,10 +34,10 @@
                         <td>£{{$product->price}}</td>
                         <td>{{$product->quantity}}</td>
                         <td class="d-flex justify-content-between">
-                            <a href=""><i class="fas fa-2x fa-eye"></i></a>
-                            <a href=""><i class="far fa-2x fa-edit cyan-text"></i></a>
+                            <a href="{{route('product.show', $product->id)}}"><i class="fas fa-2x fa-eye"></i></a>
+                            <a href="{{route('product.edit', $product->id)}}"><i class="far fa-2x fa-edit cyan-text"></i></a>
                             <a href="" onclick="event.preventDefault(); document.getElementById('destroy-form').submit();"><i class="fas fa-2x fa-trash-alt red-text"></i></a>
-                            <form id="destroy-form" action="{{route('product.destroy', $product->id)}}" method="POST" style="display: none;">
+                            <form id="destroy-form" onsubmit="return confirm('Are you sure you want to delete this item?')" action="{{route('product.destroy', $product->id)}}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>

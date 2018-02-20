@@ -23,7 +23,7 @@
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                    <ul class="navbar-nav">
-                       <li class="nav-item d-flex align-items-stretch active" ><a class="nav-link waves-effect waves-light align-bottom" href="">Products</a></li>
+                       <li class="nav-item d-flex align-items-stretch active" ><a class="nav-link waves-effect waves-light align-bottom" href="{{route('home')}}">Products</a></li>
                        <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">About us</a></li>
                        <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">Contact</a></li>
 
@@ -65,7 +65,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+
+                @yield('content')
+
         </main>
     </div>
 
