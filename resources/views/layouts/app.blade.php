@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3">
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3 sticky-top">
            <div class="container-fluid">
                <a class="navbar-brand" href="/">Search and discover.</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,10 +36,10 @@
                        <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Cart <i class="fas fa-2x fa-shopping-cart"></i>
-                               <span class="badge badge-pill primary-color">2</span>
+                               <span class="badge badge-pill primary-color">{{Cart::session(Auth::user()->id)->getTotalQuantity()}}</span>
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                               <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> View cart</a>
+                               <a href="{{route('cart.show')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> View cart</a>
                                <a href="#" class="dropdown-item waves-effect waves-light"><i class="far fa-credit-card"></i> Go to checkout</a>
                            </div>
                        </li>

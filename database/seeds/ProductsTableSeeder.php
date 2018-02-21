@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->sentences(3, true),
                 'price' => $faker->numberBetween(100, 2000),
                 'quantity' => $faker->numberBetween(0, 20),
-                'image_path' => "products/e5Qec7ZFuCyacRyYmeAUFqEJQWsUhl9c4TlcZ4xv.png"
+                'image_path' => "products/6P8FRFl239pyl4KUBX5Z1gJ2bMOnIPANeXUcWiqD.png"
             ]);
         }
     }

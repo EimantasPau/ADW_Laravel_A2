@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3 sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin dashboard</a>
             <a class="navbar-brand" href="{{route('home')}}">Main page</a>
@@ -58,7 +58,7 @@
     <main class="py-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-2 d-flex align-items-stretch">
+                <div class="col-lg-2 offset-1 d-flex align-items-stretch">
                     <div class="widget-wrapper w-100">
                         <div class="list-group">
                             <a href="{{route('admin.home')}}" class="list-group-item {{ Nav::isRoute('admin.home') }}">Home</a>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-10 d-flex align-items-stretch">
+                <div class="col-lg-8 d-flex align-items-stretch">
                     @yield('content')
                 </div>
             </div>

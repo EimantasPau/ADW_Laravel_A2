@@ -1,18 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="col-lg-6 d-flex align-items-stretch">
+    <div class="col-lg-10 d-flex align-items-stretch">
         <!--Panel-->
         <div class="card card-default w-100">
             <div class="card-header white-text">
                Update product details
             </div>
             <div class="card-body">
-                <div class="text-center">
-                    <img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid">
-                </div>
-                <br>
-                <br>
                 <form action="{{route('product.update', $product->id)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     {{ method_field('put') }}
@@ -43,6 +38,9 @@
                         @if ($errors->has('quantity'))
                             <span class="red-text">{{ $errors->first('quantity') }}</span>
                         @endif
+                    </div>
+                    <div class="text-center">
+                        <img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid">
                     </div>
                     <div class="file-field">
                         <label for="image_name">Product image</label>

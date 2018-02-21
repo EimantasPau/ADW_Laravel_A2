@@ -17,9 +17,12 @@ Auth::routes();
 Route::get('oauth/{driver}', 'SocialAuthController@redirectToProvider')->name('social.oauth');
 Route::get('oauth/{driver}/callback', 'SocialAuthController@handleProviderCallback')->name('social.callback');
 
+//Home routes
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
+
+//Admin dashboard
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
     Route::get('/products', 'ProductController@index')->name('product.index');
@@ -30,4 +33,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/product/{product}/edit', 'ProductController@edit')->name('product.edit');
     Route::put('/product/{product}', 'ProductController@update')->name('product.update');
 });
+
+//Cart routes
+Route::prefix('cart')->group(function() {
+    Route::post('/add/{id}', 'CartController@add')->name('cart.add');
+    Route::get('/', 'CartController@show')->name('cart.show');
+    Route::post('/clear', 'CartController@clear')->name('cart.clear');
+});
+
 

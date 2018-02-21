@@ -2,6 +2,11 @@
 
 @section('content')
    <div class="container">
+       @if($message = session('successMessage'))
+           <div class="alert alert-success" role="alert">
+               <strong>Success!</strong> {{$message}}
+           </div>
+       @endif
        <div class="row">
            <!--Product-->
            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
@@ -30,7 +35,18 @@
                                <dd class="col-sm-9">{{$product->description}}</dd>
                            </dl>
                            <hr>
-                           <a href="#" class="btn btn-outline-success waves-effect"><i class="fas fa-plus"></i> Add to cart </a>
+                           @if($product->quantity > 0)
+                               <form action="{{route('cart.add', $product->id)}}" method="POST">
+                                   @csrf
+                                   <button type="submit" class="btn btn-outline-success waves-effect"><i class="fas fa-plus"></i> Add to cart </button>
+                               </form>
+                               @else
+                               <div class="alert alert-danger">
+                                   <div class="text-center">
+                                       Sorry. This item is currently out of stock.
+                                   </div>
+                               </div>
+                           @endif
                        </div>
                        <!--Product-->
 

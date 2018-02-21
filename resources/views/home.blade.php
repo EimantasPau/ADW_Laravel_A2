@@ -34,14 +34,19 @@
             <!--/.Sidebar-->
 
             <!-- Product card-->
-            <div class="col-lg-9">
-                {{--Showing 21 to 30 of 54 entries--}}
+            <div class="col-lg-8">
+                @if($message = session('successMessage'))
+                    <div class="alert alert-success" role="alert">
+                        <strong>Success!</strong> {{$message}}
+                    </div>
+                @endif
                 <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
                 {{ $products->links() }}
-                @foreach($products->chunk(4) as $chunk)
                 <div class="row d-flex align-items-stretch">
+                @foreach($products->chunk(4) as $chunk)
+
                     @foreach($chunk as $product)
-                    <div class="col-xl-3 col-lg-6 col-md-6">
+                    <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="card mb-r wow fadeIn" data-wow-delay="0.4s">
                             <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
                             <div class="card-body">
@@ -60,13 +65,18 @@
                                 <p class="card-text mt-4">{{str_limit($product->description, 100, '...')}}
                                 </p>
                                 <a href="{{route('product.show', $product->id)}}" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
-                                <a href="#" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </a>
+                                <form action="{{route('cart.add', $product->id)}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>
+
                 @endforeach
+                </div>
                 {{ $products->links() }}
             </div>
             <!--/Product card-->
