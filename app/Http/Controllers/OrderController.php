@@ -15,15 +15,9 @@ use Stripe\Stripe;
 class OrderController extends Controller
 {
     public function index() {
-//        $orders = Order::whereUserId(Auth::user()->id)->get();
-//        dump($orders);
-        $orders = Auth::user()->orders()->get();
-        dump($orders);
-        foreach($orders as $order){
-            dump($order->pivot->line_quantity);
+        if($orders = Order::whereUserId(Auth::user()->id)->with('products')->get()){
+            return view('order.index', compact('orders'));
         }
-
-        return view('order.index', compact('orders'));
     }
 
     public function checkout() {
@@ -59,14 +53,14 @@ class OrderController extends Controller
 
     public function create() {
         $order = Order::create([
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'total_price' => Cart::getTotal()
         ]);
 
         $orderLines = Cart::getContent();
         foreach($orderLines as $line) {
             $product = Product::findOrFail($line->id);
             $order->products()->attach($product, ['line_quantity' => $line->quantity]);
-
             $product->decrement('quantity', $line->quantity);
         }
 

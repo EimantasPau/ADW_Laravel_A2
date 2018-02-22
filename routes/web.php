@@ -17,9 +17,13 @@ Auth::routes();
 Route::get('oauth/{driver}', 'SocialAuthController@redirectToProvider')->name('social.oauth');
 Route::get('oauth/{driver}/callback', 'SocialAuthController@handleProviderCallback')->name('social.callback');
 
-//Home routes
+//Home route
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+
+//Public product routes
+Route::get('/product/{product}', 'ProductController@show')->name('product.show');
+
 
 
 //Admin dashboard
@@ -29,7 +33,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/product', 'ProductController@create')->name('product.create');
     Route::post('/product', 'ProductController@store')->name('product.store');
     Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
-    Route::get('/product/{product}', 'ProductController@show')->name('product.show');
     Route::get('/product/{product}/edit', 'ProductController@edit')->name('product.edit');
     Route::put('/product/{product}', 'ProductController@update')->name('product.update');
 });

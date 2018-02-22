@@ -48,9 +48,9 @@
                 <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
                 {{ $products->links() }}
                 <div class="row d-flex align-items-stretch">
-                @foreach($products->chunk(4) as $chunk)
+                @foreach($products as $product)
 
-                    @foreach($chunk as $product)
+
                     <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="card mb-r wow fadeIn" data-wow-delay="0.4s">
                             <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
@@ -80,7 +80,6 @@
                     </div>
                     @endforeach
 
-                @endforeach
                 </div>
                 {{ $products->links() }}
             </div>
