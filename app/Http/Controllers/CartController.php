@@ -13,7 +13,8 @@ class CartController extends Controller
     public function add($id) {
         $product = Product::findOrFail($id);
         if($product->quantity <= 0){
-            return back();
+            Session::flash('errorMessage', 'This product is out of stock!');
+            return redirect()->back();
         }
         $userId = Auth::user()->id;
         Cart::session($userId)->add(array(

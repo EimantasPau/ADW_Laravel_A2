@@ -40,7 +40,9 @@
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                <a href="{{route('cart.show')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> View cart</a>
-                               <a href="#" class="dropdown-item waves-effect waves-light"><i class="far fa-credit-card"></i> Go to checkout</a>
+                               @if(!Cart::isEmpty())
+                                   <a href="{{route('order.checkout')}}" class="dropdown-item waves-effect waves-light"><i class="far fa-credit-card"></i> Go to checkout</a>
+                               @endif
                            </div>
                        </li>
                        <li class="nav-item dropdown">
@@ -50,7 +52,7 @@
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                <a href="{{route('admin.home')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-lock"></i> Admin dashboard</a>
-                               <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
+                               <a href="{{route('order.index')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
                                <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-cogs"></i> Settings</a>
                                <a class="dropdown-item waves-effect waves-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Log out</a>
                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -79,6 +81,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

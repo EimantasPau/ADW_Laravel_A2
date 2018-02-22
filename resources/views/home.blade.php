@@ -40,6 +40,11 @@
                         <strong>Success!</strong> {{$message}}
                     </div>
                 @endif
+                @if($message = session('errorMessage'))
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Sorry.</strong> {{$message}}
+                    </div>
+                @endif
                 <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
                 {{ $products->links() }}
                 <div class="row d-flex align-items-stretch">

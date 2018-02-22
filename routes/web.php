@@ -35,10 +35,15 @@ Route::prefix('admin')->group(function() {
 });
 
 //Cart routes
-Route::prefix('cart')->group(function() {
+Route::prefix('cart')->middleware('auth')->group(function() {
     Route::post('/add/{id}', 'CartController@add')->name('cart.add');
     Route::get('/', 'CartController@show')->name('cart.show');
     Route::post('/clear', 'CartController@clear')->name('cart.clear');
 });
+
+//Orders
+Route::get('/checkout', 'OrderController@checkout')->name('order.checkout');
+Route::post('/charge', 'OrderController@charge')->name('order.charge');
+Route::get('/orders', 'OrderController@index')->name('order.index');
 
 
