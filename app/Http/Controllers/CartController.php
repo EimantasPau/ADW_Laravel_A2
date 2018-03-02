@@ -89,11 +89,25 @@ class CartController extends Controller
     public function show() {
         $userId = Auth::user()->id;
         try {
-            $cartItems = Cart::session($userId)->getContent();
+            $cartItems = Cart::session($userId)->getContent()->sort();
         } catch (\Exception $e) {
             return view('cart.index')->with('errorMessage', $e->getMessage());
         }
         return view('cart.index', compact('cartItems'));
+    }
+
+    public function delete($id) {
+        $userId = Auth::user()->id;
+        try {
+            Cart::session($userId)->remove($id);
+            Session::flash('successMessage', "Item has been removed from the cart!");
+            return redirect()->back();
+        } catch (\Exception $e) {
+            Session::flash('errorMessage', "We were unable to remove the specified item!");
+            return redirect()->back();
+        }
+
+
     }
 
     public function clear() {

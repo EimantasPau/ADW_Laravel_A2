@@ -30,6 +30,8 @@ Route::get('/products', 'ProductController@index')->name('product.index');
 //Admin dashboard
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
+
+    //Product routes
     Route::get('/products', 'AdminProductController@index')->name('admin.product.index');
     Route::get('/product', 'AdminProductController@create')->name('admin.product.create');
     Route::post('/product', 'AdminProductController@store')->name('admin.product.store');
@@ -43,8 +45,9 @@ Route::prefix('cart')->middleware('auth')->group(function() {
     Route::post('/add/{id}', 'CartController@add')->name('cart.add');
     Route::get('/', 'CartController@show')->name('cart.show');
     Route::post('/clear', 'CartController@clear')->name('cart.clear');
-    Route::post('/product/{id}/increment', 'CartController@increment')->name('cart.product.increment');
-    Route::post('/product/{id}/decrement', 'CartController@decrement')->name('cart.product.decrement');
+    Route::post('/{id}/increment', 'CartController@increment')->name('cart.product.increment');
+    Route::post('/{id}/decrement', 'CartController@decrement')->name('cart.product.decrement');
+    Route::delete('/{id}', 'CartController@delete')->name('cart.product.delete');
 });
 
 //Orders

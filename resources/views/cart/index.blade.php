@@ -33,9 +33,16 @@
                         <tbody>
                         @foreach($cartItems as $item)
                             <tr>
-                                <td class="text-center"><a class="nav-link text-primary" href="{{route('product.show', $item->id)}}">{{$item->name}}</a></td>
-                                <td class="text-center">{{$item->quantity}}</td>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
+                                    <a class="text-primary d-inline" href="{{route('product.show', $item->id)}}">{{$item->name}}</a>
+                                    <form action="{{route('cart.product.delete', $item->id)}}" class="d-inline" method="POST">
+                                        @csrf
+                                        {{ method_field('delete') }}
+                                        <button type="submit" style="border:none;background-color:transparent;"><i class="fas fa-times text-danger"></i></button>
+                                    </form>
+                                </td>
+                                <td class="text-center align-middle">{{$item->quantity}}</td>
+                                <td class="text-center align-middle">
                                     <form action="{{route('cart.product.increment', $item->id)}}" method="POST">
                                         @csrf
                                         <button type="submit" style="border:none;background-color:transparent;"><i class="fas fa-2x fa-plus text-success"></i></button>
@@ -46,7 +53,7 @@
                                     </form>
 
                                 </td>
-                                <td class="text-center">£{{$item->price}}</td>
+                                <td class="text-center align-middle">£{{$item->price}}</td>
                             </tr>
                         @endforeach
 
@@ -54,9 +61,9 @@
                         <!--Table body-->
                         <tfoot>
                         <tr>
-                            <td class="text-center"><strong>Total</strong></td>
-                            <td class="text-center"><strong>{{Cart::getTotalQuantity()}}</strong></td>
-                            <td class="text-center">
+                            <td class="text-center align-middle"><strong>Total</strong></td>
+                            <td class="text-center align-middle"><strong>{{Cart::getTotalQuantity()}}</strong></td>
+                            <td class="text-center align-middle">
                                 <form action="{{route('cart.clear')}}" method="POST">
                                     @csrf
                                     <div class="text-center">
@@ -64,7 +71,7 @@
                                     </div>
                                 </form>
                             </td>
-                            <td class="text-center"><strong>£{{Cart::getTotal()}}</strong></td>
+                            <td class="text-center align-middle"><strong>£{{Cart::getTotal()}}</strong></td>
                         </tr>
                         <tr>
                             <td colspan="4">
