@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.3 on 2018-02-22 16:06:19.
+ * Generated for Laravel 5.6.7 on 2018-02-28 16:30:18.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2669,6 +2669,19 @@ namespace Illuminate\Support\Facades {
         public static function component($path, $alias = null)
         {
             \Illuminate\View\Compilers\BladeCompiler::component($path, $alias);
+        }
+        
+        /**
+         * Register an include alias directive.
+         *
+         * @param string $path
+         * @param string $alias
+         * @return void 
+         * @static 
+         */ 
+        public static function include($path, $alias = null)
+        {
+            \Illuminate\View\Compilers\BladeCompiler::include($path, $alias);
         }
         
         /**
@@ -6052,6 +6065,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Set the loaded translation groups.
+         *
+         * @param array $loaded
+         * @return void 
+         * @static 
+         */ 
+        public static function setLoaded($loaded)
+        {
+            \Illuminate\Translation\Translator::setLoaded($loaded);
+        }
+        
+        /**
          * Set the parsed value of a key.
          *
          * @param string $key
@@ -7557,6 +7582,19 @@ namespace Illuminate\Support\Facades {
         public static function json($key = null, $default = null)
         {
             return \Illuminate\Http\Request::json($key, $default);
+        }
+        
+        /**
+         * Create a new request instance from the given Laravel request.
+         *
+         * @param \Illuminate\Http\Request $from
+         * @param \Illuminate\Http\Request|null $to
+         * @return static 
+         * @static 
+         */ 
+        public static function createFrom($from, $to = null)
+        {
+            return \Illuminate\Http\Request::createFrom($from, $to);
         }
         
         /**
@@ -11073,6 +11111,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Create an instance of the sftp driver.
+         *
+         * @param array $config
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @static 
+         */ 
+        public static function createSftpDriver($config)
+        {
+            return \Illuminate\Filesystem\FilesystemManager::createSftpDriver($config);
+        }
+        
+        /**
          * Create an instance of the Amazon S3 driver.
          *
          * @param array $config
@@ -14345,6 +14395,21 @@ namespace  {
             public static function mergeWheres($wheres, $bindings)
             {    
                 \Illuminate\Database\Query\Builder::mergeWheres($wheres, $bindings);
+            }
+         
+            /**
+             * Prepare the value and operator for a where clause.
+             *
+             * @param string $value
+             * @param string $operator
+             * @param bool $useDefault
+             * @return array 
+             * @throws \InvalidArgumentException
+             * @static 
+             */ 
+            public static function prepareValueAndOperator($value, $operator, $useDefault = false)
+            {    
+                return \Illuminate\Database\Query\Builder::prepareValueAndOperator($value, $operator, $useDefault);
             }
          
             /**

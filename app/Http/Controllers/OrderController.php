@@ -15,15 +15,15 @@ use Stripe\Stripe;
 class OrderController extends Controller
 {
     public function index() {
-        if($orders = Order::whereUserId(Auth::user()->id)->with('products')->get()){
-            return view('order.index', compact('orders'));
-        }
+        $orders = Order::whereUserId(Auth::user()->id)->with('products')->get();
+        return view('order.index', compact('orders'));
     }
 
     public function checkout() {
         if(!Cart::session(Auth::user()->id)->isEmpty()){
             $total = Cart::session(Auth::user()->id)->getTotal();
-            return view('cart.checkout', compact('total'));
+            $orderItems = Cart::session(Auth::user()->id)->getContent();
+            return view('cart.checkout', ['total'=> $total, 'orderItems'=>$orderItems]);
         }
         return redirect('/');
     }
@@ -35,7 +35,6 @@ class OrderController extends Controller
         }
 
         Stripe::setApiKey('sk_test_lx4qHrzmxu2yiIfEbAURRS5q');
-
         try {
             Charge::create(array(
                 "amount" => Cart::getTotal() * 100,
@@ -48,7 +47,7 @@ class OrderController extends Controller
         } catch (Exception $e) {
                 return redirect()->route('order.checkout')->with('error', $e->getMessage());
         }
-        return redirect()->route('home')->with('successMessage', 'Your payment has been successful');
+        return redirect()->route('product.index')->with('successMessage', 'Your payment has been successful!');
     }
 
     public function create() {
@@ -57,7 +56,7 @@ class OrderController extends Controller
             'total_price' => Cart::getTotal()
         ]);
 
-        $orderLines = Cart::getContent();
+        $orderLines = Cart::session(Auth::user()->id)->getContent();
         foreach($orderLines as $line) {
             $product = Product::findOrFail($line->id);
             $order->products()->attach($product, ['line_quantity' => $line->quantity]);

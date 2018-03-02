@@ -17,7 +17,7 @@
                      <strong>Sorry.</strong> {{$message}}
                  </div>
             @endif
-            <a href="{{route('product.create')}}" class="btn btn-outline-success waves-effect float-right"><i class="fas fa-plus"></i> Add product</a>
+            <a href="{{route('admin.product.create')}}" class="btn btn-outline-success waves-effect float-right"><i class="fas fa-plus"></i> Add product</a>
             <div class="dataTables_wrapper">
                 <table id="productList" class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">
                     <thead>
@@ -47,13 +47,13 @@
                             <a href="{{route('product.show', $product->id)}}">
                                 <i class="fas fa-2x fa-eye"></i>
                             </a>
-                            <a href="{{route('product.edit', $product->id)}}">
+                            <a href="{{route('admin.product.edit', $product->id)}}">
                                 <i class="far fa-2x fa-edit cyan-text"></i>
                             </a>
                             <a href="" onclick="event.preventDefault(); return confirm('Are you sure?') ? document.getElementById('destroy-form-{{$product->id}}').submit() : false">
                                 <i class="fas fa-2x fa-trash-alt red-text"></i>
                             </a>
-                            <form id="destroy-form-{{$product->id}}" action="{{route('product.destroy', $product->id)}}" method="POST" style="">
+                            <form id="destroy-form-{{$product->id}}" action="{{route('admin.product.destroy', $product->id)}}" method="POST" style="">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                                 {{--<button type="submit"><i class="fas fa-2x fa-trash-alt red-text"></i></button>--}}
@@ -71,3 +71,12 @@
     </div>
     <!--/.Panel-->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#productList').DataTable();
+            $("select[name='productList_length']").css({"height": "100%"});
+        });
+    </script>
+@endpush

@@ -41,7 +41,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{route('admin.home')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-lock"></i> Admin dashboard</a>
-                                <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
+                                <a href="{{route('product.index')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
                                 <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-cogs"></i> Settings</a>
                                 <a class="dropdown-item waves-effect waves-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Log out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -62,7 +62,7 @@
                     <div class="widget-wrapper w-100">
                         <div class="list-group">
                             <a href="{{route('admin.home')}}" class="list-group-item {{ Nav::isRoute('admin.home') }}">Home</a>
-                            <a href="{{route('product.index')}}" class="list-group-item {{ Nav::isResource('product') }}" >Product management</a>
+                            <a href="{{route('admin.product.index')}}" class="list-group-item {{ Nav::isResource('product') }}" >Product management</a>
                             <a href="#" class="list-group-item ">Reports and Charts</a>
                             <a href="#" class="list-group-item ">General settings</a>
                         </div>
@@ -86,6 +86,7 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('scripts');
 
 </body>
 </html>

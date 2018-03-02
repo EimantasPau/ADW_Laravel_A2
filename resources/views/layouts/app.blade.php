@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -23,7 +23,7 @@
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                    <ul class="navbar-nav">
-                       <li class="nav-item d-flex align-items-stretch active" ><a class="nav-link waves-effect waves-light align-bottom" href="{{route('home')}}">Products</a></li>
+                       <li class="nav-item d-flex align-items-stretch active" ><a class="nav-link waves-effect waves-light align-bottom" href="{{route('product.index')}}">Products</a></li>
                        <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">About us</a></li>
                        <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">Contact</a></li>
 
@@ -81,8 +81,10 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts');
 
 </body>
 </html>

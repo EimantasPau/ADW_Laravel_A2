@@ -19,37 +19,41 @@
                         Your orders
                     </div>
                     <div class="card-body">
-                        <!--Table-->
-                        <table class="table table-hover table-bordered table-responsive-md">
-                            <!--Table head-->
-                            <thead>
-                            <tr>
-                                <th class="text-center">Order ID</th>
-                                <th class="text-center">Products</th>
-                                <th class="text-center">Paid</th>
-                                <th class="text-center">Time of purchase</th>
-                            </tr>
-                            </thead>
-                            <!--Table head-->
-                            <!--Table body-->
-                            <tbody>
-                            @foreach($orders as $order)
-                                <tr>
-                                    <td class="text-center align-middle">{{$order->id}}</td>
-                                    <td class="text-center align-middle">
-                                        @foreach($order->products as $product)
-                                        <p>{{$product->name}} x {{$product->pivot->line_quantity}}</p>
-                                        @endforeach
-                                    </td>
-                                    <td class="text-center align-middle">£{{$order->total_price}}</td>
-                                    <td class="text-center align-middle">{{$order->created_at}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <!--Table body-->
+                       @if(count($orders) > 0)
+                           <!--Table-->
+                               <table class="table table-striped table-bordered table-responsive-md" id="user-order-list" cellspacing="0" width="100%">
+                                   <!--Table head-->
+                                   <thead>
+                                   <tr>
+                                       <th class="text-center">Order ID</th>
+                                       <th class="text-center">Products</th>
+                                       <th class="text-center">Paid</th>
+                                       <th class="text-center">Time of purchase</th>
+                                   </tr>
+                                   </thead>
+                                   <!--Table head-->
+                                   <!--Table body-->
+                                   <tbody>
+                                   @foreach($orders as $order)
+                                       <tr>
+                                           <td class="text-center align-middle">{{$order->id}}</td>
+                                           <td class="text-center align-middle">
+                                               @foreach($order->products as $product)
+                                                   <p>{{$product->name}} x {{$product->pivot->line_quantity}}</p>
+                                               @endforeach
+                                           </td>
+                                           <td class="text-center align-middle">£{{$order->total_price}}</td>
+                                           <td class="text-center align-middle">{{$order->created_at}}</td>
+                                       </tr>
+                                   @endforeach
+                                   </tbody>
+                                   <!--Table body-->
 
-                        </table>
-                        <!--Table-->
+                               </table>
+                               <!--Table-->
+                           @else
+                           <p>You have no orders right now.</p>
+                        @endif
                     </div>
                 </div>
                 <!--/.Panel-->
@@ -58,3 +62,12 @@
     </div>
     <!--/.Main layout-->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#user-order-list').DataTable();
+            $("select[name='user-order-list_length']").css({"height": "100%"});
+        });
+    </script>
+@endpush

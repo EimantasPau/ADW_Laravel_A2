@@ -8,7 +8,7 @@
                     Add a new product
                 </div>
                 <div class="card-body">
-                    <form action="{{route('product.store')}}" enctype="multipart/form-data" method="POST">
+                    <form action="{{route('admin.product.store')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="md-form">
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
@@ -50,7 +50,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary waves-effect">Create product</button>
-                            <a href="{{route('product.index')}}" class="btn btn-outline-danger waves-effect">Cancel</a>
+                            <a href="{{route('admin.product.index')}}" class="btn btn-outline-danger waves-effect">Cancel</a>
                         </div>
                     </form>
                 </div>
