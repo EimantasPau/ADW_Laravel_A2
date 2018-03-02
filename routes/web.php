@@ -43,6 +43,8 @@ Route::prefix('cart')->middleware('auth')->group(function() {
     Route::post('/add/{id}', 'CartController@add')->name('cart.add');
     Route::get('/', 'CartController@show')->name('cart.show');
     Route::post('/clear', 'CartController@clear')->name('cart.clear');
+    Route::post('/product/{id}/increment', 'CartController@increment')->name('cart.product.increment');
+    Route::post('/product/{id}/decrement', 'CartController@decrement')->name('cart.product.decrement');
 });
 
 //Orders

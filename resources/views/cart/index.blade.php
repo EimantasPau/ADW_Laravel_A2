@@ -6,6 +6,16 @@
             <div class="col-lg-12">
                 @if(!Cart::isEmpty())
                     <h1>Your cart</h1>
+                    @if($message = session('successMessage'))
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success!</strong> {{$message}}
+                        </div>
+                    @endif
+                    @if($message = session('errorMessage'))
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Sorry.</strong> {{$message}}
+                        </div>
+                    @endif
                     <table class="table table-hover table-bordered table-fixed table-responsive-md">
 
                         <!--Table head-->
@@ -21,12 +31,20 @@
 
                         <!--Table body-->
                         <tbody>
-                        @foreach($cartItems as $index => $item)
+                        @foreach($cartItems as $item)
                             <tr>
                                 <td class="text-center"><a class="nav-link text-primary" href="{{route('product.show', $item->id)}}">{{$item->name}}</a></td>
                                 <td class="text-center">{{$item->quantity}}</td>
                                 <td class="text-center">
-                                    <a href=""><i class="fas fa-2x fa-plus text-success" style="color: #00C851;"></i></a> <a href=""><i class="fas fa-2x fa-minus text-danger" style="color:#ff3547;"></i></a>
+                                    <form action="{{route('cart.product.increment', $item->id)}}" method="POST">
+                                        @csrf
+                                        <button type="submit" style="border:none;background-color:transparent;"><i class="fas fa-2x fa-plus text-success"></i></button>
+                                    </form>
+                                    <form action="{{route('cart.product.decrement', $item->id)}}" method="POST">
+                                        @csrf
+                                        <button type="submit" style="border:none;background-color:transparent;"><i class="fas fa-2x fa-minus text-danger"></i></button>
+                                    </form>
+
                                 </td>
                                 <td class="text-center">£{{$item->price}}</td>
                             </tr>

@@ -7,6 +7,11 @@
                <strong>Success!</strong> {{$message}}
            </div>
        @endif
+       @if($message = session('errorMessage'))
+            <div class="alert alert-danger" role="alert">
+                <strong>Sorry.</strong> {{$message}}
+            </div>
+       @endif
        <div class="row">
            <!--Product-->
            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
