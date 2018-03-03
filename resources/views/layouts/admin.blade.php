@@ -41,7 +41,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{route('admin.home')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-lock"></i> Admin dashboard</a>
-                                <a href="{{route('product.index')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
+                                <a href="{{route('order.index')}}" class="dropdown-item waves-effect waves-light"><i class="fas fa-list-ul"></i> My orders</a>
                                 <a href="#" class="dropdown-item waves-effect waves-light"><i class="fas fa-cogs"></i> Settings</a>
                                 <a class="dropdown-item waves-effect waves-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Log out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -9,8 +9,8 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::paginate(12);
-        return view('home', compact('products'));
+        $products = Product::with('category')->paginate(12);
+        return view('product.index', compact('products'));
     }
 
     public function show(Request $request, $id)

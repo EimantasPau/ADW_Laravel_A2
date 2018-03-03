@@ -39,6 +39,13 @@
                             <span class="red-text">{{ $errors->first('quantity') }}</span>
                         @endif
                     </div>
+                    <div class="md-form">
+                        <select class="custom-select w-100">
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" {{$category->id == $product->category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="text-center">
                         <img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid">
                     </div>

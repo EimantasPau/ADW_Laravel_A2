@@ -36,6 +36,10 @@
                                <span class="badge blue">£{{$product->price}}</span>
                            </h2>
                            <dl class="row mt-4">
+                               <dt class="col-sm-3">Category</dt>
+                               <dd class="col-sm-9">{{$product->category->name}}</dd>
+                           </dl>
+                           <dl class="row mt-4">
                                <dt class="col-sm-3">Decription</dt>
                                <dd class="col-sm-9">{{$product->description}}</dd>
                            </dl>

@@ -25,6 +25,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Category</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -33,6 +34,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Category</th>
                         <th></th>
                     </tr>
                     </tfoot>
@@ -43,6 +45,7 @@
                         <td>{{$product->name}}</td>
                         <td>£{{$product->price}}</td>
                         <td>{{$product->quantity}}</td>
+                        <td>{{$product->category->name}}</td>
                         <td class="d-flex justify-content-between">
                             <a href="{{route('product.show', $product->id)}}">
                                 <i class="fas fa-2x fa-eye"></i>

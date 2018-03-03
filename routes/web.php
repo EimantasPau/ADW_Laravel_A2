@@ -38,6 +38,9 @@ Route::prefix('admin')->group(function() {
     Route::delete('/product/{product}', 'AdminProductController@destroy')->name('admin.product.destroy');
     Route::get('/product/{product}/edit', 'AdminProductController@edit')->name('admin.product.edit');
     Route::put('/product/{product}', 'AdminProductController@update')->name('admin.product.update');
+
+    //Category routes
+    Route::get('/categories', 'CategoryController@index')->name('admin.category.index');
 });
 
 //Cart routes

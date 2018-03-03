@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -27,7 +28,8 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $categories = Category::all();
+        return view('admin.product.create', compact('categories'));
     }
 
     /**
@@ -80,7 +82,8 @@ class AdminProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.product.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     /**
@@ -112,7 +115,7 @@ class AdminProductController extends Controller
 
         $product->save();
         Session::flash('successMessage', 'You have successfully updated the product!');
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -127,6 +130,6 @@ class AdminProductController extends Controller
         Storage::delete($product->image_path);
         Product::destroy($id);
         Session::flash('successMessage', 'Product has been deleted.');
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 }

@@ -38,6 +38,13 @@
                                 <span class="red-text">{{ $errors->first('quantity') }}</span>
                             @endif
                         </div>
+                        <div class="md-form">
+                            <select class="custom-select w-100">
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="file-field">
                             <label for="image_name">Product image</label>
                             <div class="btn btn-primary btn-sm">

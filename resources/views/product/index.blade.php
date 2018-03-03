@@ -6,7 +6,7 @@
         <div class="row mt-4">
 
             <!--Sidebar-->
-            <div class="col-lg-2 offset-1 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-lg-2 offset-xl-1 wow fadeIn" data-wow-delay="0.2s">
 
                 <div class="widget-wrapper">
                     <h4 class="h4-responsive font-bold mb-3">Categories:</h4>
@@ -45,29 +45,28 @@
                         <strong>Sorry.</strong> {{$message}}
                     </div>
                 @endif
-                <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
+                <p class="mt-sm-4">Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
                 {{ $products->links() }}
                 <div class="row d-flex align-items-stretch">
                     @foreach($products as $product)
-
-
                         <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="card mb-r wow fadeIn" data-wow-delay="0.4s">
+                            <div class="card mb-r wow fadeIn align-items-stretch" data-wow-delay="0.4s">
                                 <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="font-bold">
-                                        <strong>{{$product->name}}</strong>
-                                        @if($product->quantity > 0)
-                                            <div class="badge badge-info">In stock</div>
-                                        @else
-                                            <div class="badge badge-danger">Out of stock</div>
-                                        @endif
+                                        <strong style="white-space: nowrap;">{{$product->name}}</strong>
                                     </h5>
+                                    @if($product->quantity > 0)
+                                        <span class="badge badge-info">In stock</span>
+                                    @else
+                                        <span class="badge badge-danger">Out of stock</span>
+                                    @endif
                                     <hr>
-                                    <h4>
-                                        <strong>£{{$product->price}}</strong>
-                                    </h4>
-                                    <p class="card-text mt-4">{{str_limit($product->description, 100, '...')}}
+                                    <h5 class="d-flex justify-content-between">
+                                        <span>{{$product->category->name}}</span>
+                                        <span><strong>£{{$product->price}}</strong></span>
+                                    </h5>
+                                    <p class="card-text mt-4" style="min-height: 100px;">{{str_limit($product->description, 100, '...')}}
                                     </p>
                                     <a href="{{route('product.show', $product->id)}}" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
                                     <form action="{{route('cart.add', $product->id)}}" method="POST">
