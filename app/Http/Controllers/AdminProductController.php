@@ -17,7 +17,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(12);
+        $products = Product::all();
         return view('admin.product.index', compact('products'));
     }
 
@@ -46,6 +46,7 @@ class AdminProductController extends Controller
             'price' => 'required|digits_between:1,6',
             'quantity' => 'required|digits_between:1,5',
             'image_path' => 'required',
+            'category_id' => 'required'
         ]);
 
         $image = $request->file('image_path');
@@ -56,6 +57,7 @@ class AdminProductController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->image_path = $image_path;
+        $product->category_id = $request->category_id;
         $product->save();
         Session::flash('successMessage', 'You have successfully created a product!');
         return redirect()->route('product.index');
@@ -99,13 +101,15 @@ class AdminProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|digits_between:1,6',
-            'quantity' => 'required|digits_between:1,5'
+            'quantity' => 'required|digits_between:1,5',
+            'category_id' => 'required'
         ]);
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
+        $product->category_id = $request->category_id;
 
         if($image = $request->file('image_path')){
             Storage::delete($product->image_path);

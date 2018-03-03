@@ -39,11 +39,14 @@
                             @endif
                         </div>
                         <div class="md-form">
-                            <select class="custom-select w-100">
+                            <select class="custom-select w-100" name="category_id">
                                 @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('category_id'))
+                                <span class="red-text">{{ $errors->first('category_id') }}</span>
+                            @endif
                         </div>
                         <div class="file-field">
                             <label for="image_name">Product image</label>

@@ -40,11 +40,14 @@
                         @endif
                     </div>
                     <div class="md-form">
-                        <select class="custom-select w-100">
+                        <select class="custom-select w-100" name="category_id">
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}" {{$category->id == $product->category->id ? 'selected' : ''}}>{{$category->name}}</option>
                             @endforeach
                         </select>
+                        @if ($errors->has('category_id'))
+                            <span class="red-text">{{ $errors->first('category_id') }}</span>
+                        @endif
                     </div>
                     <div class="text-center">
                         <img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid">

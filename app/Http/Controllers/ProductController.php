@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::with('category')->paginate(12);
+        $products = Product::with('category')->orderBy('created_at', 'DESC')->paginate(12);
         return view('product.index', compact('products'));
     }
 
