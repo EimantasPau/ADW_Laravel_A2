@@ -25,7 +25,6 @@
                                    <!--Table head-->
                                    <thead>
                                    <tr>
-                                       <th class="text-center">Order ID</th>
                                        <th class="text-center">Products</th>
                                        <th class="text-center">Paid</th>
                                        <th class="text-center">Time of purchase</th>
@@ -36,10 +35,9 @@
                                    <tbody>
                                    @foreach($orders as $order)
                                        <tr>
-                                           <td class="text-center align-middle">{{$order->id}}</td>
-                                           <td class="text-center align-middle">
+                                           <td class="text-left align-middle">
                                                @foreach($order->products as $product)
-                                                   <p>{{$product->name}} x {{$product->pivot->line_quantity}}</p>
+                                                   <p><img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid" style="max-width: 100px">{{$product->name}} x {{$product->pivot->line_quantity}}</p>
                                                @endforeach
                                            </td>
                                            <td class="text-center align-middle">£{{$order->total_price}}</td>
