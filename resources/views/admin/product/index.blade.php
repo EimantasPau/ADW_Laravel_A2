@@ -42,14 +42,14 @@
                     @if($products)
                         @foreach($products as $product)
                     <tr>
-                        <td>{{$product->name}}</td>
+                        <td><a href="{{route('product.show', $product->id)}}" class="text-primary">{{$product->name}}</a></td>
                         <td>£{{$product->price}}</td>
                         <td>{{$product->quantity}}</td>
                         <td>{{$product->category->name}}</td>
                         <td class="d-flex justify-content-between">
-                            <a href="{{route('product.show', $product->id)}}">
-                                <i class="fas fa-2x fa-eye"></i>
-                            </a>
+                            {{--<a href="{{route('product.show', $product->id)}}">--}}
+                                {{--<i class="fas fa-2x fa-eye"></i>--}}
+                            {{--</a>--}}
                             <a href="{{route('admin.product.edit', $product->id)}}">
                                 <i class="far fa-2x fa-edit cyan-text"></i>
                             </a>

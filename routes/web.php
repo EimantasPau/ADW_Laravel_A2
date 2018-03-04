@@ -33,14 +33,19 @@ Route::prefix('admin')->group(function() {
 
     //Product routes
     Route::get('/products', 'AdminProductController@index')->name('admin.product.index');
-    Route::get('/product', 'AdminProductController@create')->name('admin.product.create');
-    Route::post('/product', 'AdminProductController@store')->name('admin.product.store');
-    Route::delete('/product/{product}', 'AdminProductController@destroy')->name('admin.product.destroy');
-    Route::get('/product/{product}/edit', 'AdminProductController@edit')->name('admin.product.edit');
-    Route::put('/product/{product}', 'AdminProductController@update')->name('admin.product.update');
+    Route::get('/products/create', 'AdminProductController@create')->name('admin.product.create');
+    Route::post('/products', 'AdminProductController@store')->name('admin.product.store');
+    Route::delete('/products/{product}', 'AdminProductController@destroy')->name('admin.product.destroy');
+    Route::get('/products/{product}/edit', 'AdminProductController@edit')->name('admin.product.edit');
+    Route::put('/products/{product}', 'AdminProductController@update')->name('admin.product.update');
 
     //Category routes
     Route::get('/categories', 'CategoryController@index')->name('admin.category.index');
+    Route::get('/categories/create', 'CategoryController@create')->name('admin.category.create');
+    Route::post('/categories', 'CategoryController@store')->name('admin.category.store');
+    Route::delete('/categories/{category}', 'CategoryController@destroy')->name('admin.category.destroy');
+    Route::put('/categories/{category}', 'CategoryController@update')->name('admin.category.update');
+    Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
 });
 
 //Cart routes

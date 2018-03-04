@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="col-lg-8 d-flex align-items-stretch">
+    <div class="col-lg-10 d-flex align-items-stretch">
         <!--Panel-->
             <div class="card card-default w-100">
                 <div class="card-header white-text">
@@ -32,28 +32,32 @@
                             </small>
                             <hr>
                         </div>
-                        <div class="md-form">
-                            <input step="0.01" id="price" type="number" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}">
-                            <label for="price">Product price</label>
-                            @if ($errors->has('price'))
-                                <span class="red-text">{{ $errors->first('price') }}</span>
-                            @endif
-                            <small class="form-text text-muted">
-                                <i class="fas fa-question-circle"></i> Decide on the price that you wish to sell the item for in pounds(£).
-                            </small>
-                            <hr>
-                        </div>
-                        <div class="md-form">
-                            <input id="quantity" type="number" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" name="quantity" value="{{ old('quantity') }}">
-                            <label for="quantity">Product quantity</label>
-                            @if ($errors->has('quantity'))
-                                <span class="red-text">{{ $errors->first('quantity') }}</span>
-                            @endif
-                            <small class="form-text text-muted">
-                                <i class="fas fa-question-circle"></i> Enter the number of products that you wish to add.
-                            </small>
-                            <hr>
-                        </div>
+                       <div class="row">
+                          <div class="col">
+                              <div class="md-form">
+                                  <input step="0.01" id="price" type="number" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}">
+                                  <label for="price">Product price</label>
+                                  @if ($errors->has('price'))
+                                      <span class="red-text">{{ $errors->first('price') }}</span>
+                                  @endif
+                                  <small class="form-text text-muted">
+                                      <i class="fas fa-question-circle"></i> Decide on the price that you wish to sell the item for in pounds(£).
+                                  </small>
+                              </div>
+                          </div>
+                          <div class="col">
+                              <div class="md-form">
+                                  <input id="quantity" type="number" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" name="quantity" value="{{ old('quantity') }}">
+                                  <label for="quantity">Product quantity</label>
+                                  @if ($errors->has('quantity'))
+                                      <span class="red-text">{{ $errors->first('quantity') }}</span>
+                                  @endif
+                                  <small class="form-text text-muted">
+                                      <i class="fas fa-question-circle"></i> Enter the number of products that you wish to add.
+                                  </small>
+                              </div>
+                          </div>
+                       </div>
                         <div class="md-form">
                             <select class="custom-select w-100" name="category_id">
                                 <option disabled selected>Category</option>
@@ -96,7 +100,7 @@
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        });
+        })
     </script>
     @endpush
 

@@ -62,7 +62,8 @@
                     <div class="widget-wrapper w-100">
                         <div class="list-group">
                             <a href="{{route('admin.home')}}" class="list-group-item {{ Nav::isRoute('admin.home') }}">Home</a>
-                            <a href="{{route('admin.product.index')}}" class="list-group-item {{ Nav::isResource('product') }}" >Product management</a>
+                            <a href="{{route('admin.product.index')}}" class="list-group-item {{ Nav::isResource('products', '/admin') }}" >Product management</a>
+                            <a href="{{route('admin.category.index')}}" class="list-group-item {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
                             <a href="#" class="list-group-item ">Reports and Charts</a>
                             <a href="#" class="list-group-item ">General settings</a>
                         </div>

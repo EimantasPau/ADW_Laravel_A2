@@ -36,14 +36,13 @@ class SocialAuthController extends Controller
      */
     public function redirectToProvider($driver)
     {
-        if( ! $this->isProviderAllowed($driver) ) {
+        if(!$this->isProviderAllowed($driver) ) {
             return $this->sendFailedResponse("{$driver} is not currently supported");
         }
 
         try {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
-            // You should show something simple fail message
             return $this->sendFailedResponse($e->getMessage());
         }
     }
@@ -70,10 +69,10 @@ class SocialAuthController extends Controller
     protected function loginOrCreateAccount($providerUser, $driver)
     {
         // check for already has account
-        $user = User::where('email', $providerUser->getEmail())->first();
 
+        $user = User::where('email', $providerUser->getEmail())->first();
         // if user already found
-        if( $user ) {
+        if($user) {
             // update the avatar and provider that might have changed
             $user->update([
                 'avatar' => $providerUser->avatar,

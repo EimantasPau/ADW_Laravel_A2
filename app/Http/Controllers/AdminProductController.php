@@ -43,8 +43,8 @@ class AdminProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|digits_between:1,6',
-            'quantity' => 'required|digits_between:1,5',
+            'price' => 'required',
+            'quantity' => 'required',
             'image_path' => 'required',
             'category_id' => 'required'
         ]);
