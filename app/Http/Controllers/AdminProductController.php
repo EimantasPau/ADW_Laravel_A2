@@ -15,9 +15,8 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $products = Product::all();
+    public function index() {
+        $products = Product::with('category')->get();
         return view('admin.product.index', compact('products'));
     }
 
@@ -26,8 +25,7 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         $categories = Category::all();
         return view('admin.product.create', compact('categories'));
     }
@@ -38,8 +36,7 @@ class AdminProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -69,8 +66,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $product = Product::findOrFail($id);
         return view('product.show', compact('product'));
     }
@@ -81,8 +77,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $product = Product::findOrFail($id);
         $categories = Category::all();
         return view('admin.product.edit', compact('product', 'categories'));
@@ -95,13 +90,12 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|digits_between:1,6',
-            'quantity' => 'required|digits_between:1,5',
+            'price' => 'required',
+            'quantity' => 'required',
             'category_id' => 'required'
         ]);
         $product = Product::findOrFail($id);
@@ -128,8 +122,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $product = Product::findOrFail($id);
         Storage::delete($product->image_path);
         Product::destroy($id);

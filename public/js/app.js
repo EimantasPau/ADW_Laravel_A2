@@ -994,11 +994,6 @@ var app = new Vue({
   el: '#app'
 });
 
-$(document).ready(function () {
-  $('#productList').DataTable();
-  $("select[name='productList_length']").css({ "height": "100%" });
-});
-
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {

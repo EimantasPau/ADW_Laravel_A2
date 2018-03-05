@@ -25,6 +25,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/product/{product}', 'ProductController@show')->name('product.show');
 Route::get('/products', 'ProductController@index')->name('product.index');
 
+//Review
+Route::post('/product/{product}/reviews', 'ReviewController@store')->name('product.review.store');
 
 
 //Admin dashboard

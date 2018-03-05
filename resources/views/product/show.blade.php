@@ -62,7 +62,6 @@
                    </div>
                </div>
                <!--/.First row-->
-
            </div>
            <!--/.Info-->
 
@@ -73,44 +72,90 @@
                <div class="row mt-5">
 
                    <!--Heading-->
-                   <div class="col reviews wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
+                   <div class="col-sm-12 reviews wow fadeIn mb-4" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
                        <h2 class="h2-responsive font-bold">Reviews</h2>
-                   </div>
 
-                   <!--First review-->
-                   <div class="media wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                       <a class="media-left" href="#">
-                           <img class="rounded-circle ml-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg" alt="Generic placeholder image">
-                       </a>
-                       <div class="media-body ml-4">
-                           <h4 class="media-heading font-bold dark-grey-text">John Doe</h4>
-                           <ul class="rating inline-ul list-unstyled">
-                               <li>
-                                   <i class="fa fa-star blue-text"></i>
-                               </li>
-                               <li>
-                                   <i class="fa fa-star blue-text"></i>
-                               </li>
-                               <li>
-                                   <i class="fa fa-star blue-text"></i>
-                               </li>
-                               <li>
-                                   <i class="fa fa-star grey-text"></i>
-                               </li>
-                               <li>
-                                   <i class="fa fa-star grey-text"></i>
-                               </li>
-                           </ul>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
-                               soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda.
-                               Earum sit id ullam eum vel delectus!</p>
-                       </div>
+                    @foreach($product->reviews as $review)
+                        <!--First review-->
+                            <div class="media wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
+                                <a class="media-left" href="#">
+                                    <img class="rounded-circle img-responsive ml-3" width="100px" src="{{$review->user->avatar_url}}" alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body ml-4">
+                                    <h4 class="media-heading font-bold dark-grey-text">{{$review->user->name}}</h4>
+                                    <ul class="rating inline-ul list-unstyled">
+                                        @foreach(range(1,5) as $i)
+                                            @if($review->rating >= $i)
+                                            <li>
+                                                <i class="fa fa-star blue-text"></i>
+                                            </li>
+                                            @else
+                                                <i class="fa fa-star grey-text"></i>
+                                            @endif
+                                        @endforeach
+
+                                    </ul>
+                                    <p>{{$review->body}}</p>
+                                </div>
+                            </div>
+                   @endforeach
                    </div>
                </div>
                <!--/.Grid row-->
+           </div>
 
+
+           <div class="col-sm-12 reviews wow fadeIn d-block mb-4 mt-4" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
+               <h2 class="h2-responsive font-bold">Leave a product review</h2>
+           </div>
+           <div class="col-sm-12">
+               <form action="{{route('product.review.store', $product->id)}}" method="POST" class="d-block">
+                   @csrf
+                   <div class="md-form">
+                       <textarea id="body" class="md-textarea {{ $errors->has('body') ? ' is-invalid' : '' }}" name="body">{{ old('body') }}</textarea>
+                       <label for="body">Body</label>
+                       @if ($errors->has('body'))
+                           <span class="red-text">{{ $errors->first('body') }}</span>
+                       @endif
+                   </div>
+                   <div class="my-rating"></div>
+                   <select name="rating" id="rating" style="display:none;">
+                       <option disabled selected value>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                   </select>
+                   @if ($errors->has('rating'))
+                       <span class="red-text">{{ $errors->first('rating') }}</span>
+                   @endif
+                   <button type="submit" class="btn btn-outline-primary d-block mt-4">Submit</button>
+               </form>
            </div>
            <!--/.Reviews-->
        </div>
    </div>
 @endsection
+
+@push('scripts')
+    <script src="{{asset('js/star-rating-svg.js')}}"></script>
+    <script type="text/javascript">
+        // specify the gradient start and end for the selected stars
+        $(".my-rating").starRating({
+            starSize: 40,
+            strokeWidth: 1,
+            strokeColor: 'black',
+            useFullStars: true,
+            disableAfterRate: false,
+            initialRating: 0,
+            starGradient: {
+                start: '#93BFE2',
+                end: '#105694'
+            },
+            callback: function(currentRating, $el){
+                $('#rating').val(currentRating);
+            }
+        });
+    </script>
+    @endpush
