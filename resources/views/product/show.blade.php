@@ -31,7 +31,7 @@
                            <!--Product data-->
                            <h2 class="h2-responsive mt-4 font-bold">{{$product->name}}</h2>
                            <hr>
-                            <span id="product-rating"></span><span style="font-size:40px;" class="badge badge-pill cyan">{{$product->reviews->avg('rating')}}</span>
+                            <span id="product-rating"></span><span style="font-size:40px;" class="badge badge-pill cyan">{{round($product->reviews->avg('rating'),2)}}</span>
 
                            <hr>
                            <h2>

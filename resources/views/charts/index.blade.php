@@ -6,9 +6,9 @@
                <div class="card-header white-text">
                   General statistics
                </div>
-               <div class="card-body">
+               <div class="card-body" id="general-statistics">
                   <div class="row">
-                      <div class="col">
+                      <div class="col-md-6 col-sm-12 mt-4">
                           <div class="card">
                               <div class="card-body">
                                   <h4 class="card-title text-primary text-center"><i class="fas fa-pound-sign"></i> Total sales</h4>
@@ -18,7 +18,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6 col-sm-12 mt-4">
                           <div class="card">
                               <div class="card-body">
                                   <h4 class="card-title text-center" style="color:#aa66cc;"><i class="fas fa-users"></i> Users</h4>
@@ -29,8 +29,8 @@
                           </div>
                       </div>
                   </div>
-                   <div class="row mt-4">
-                       <div class="col">
+                   <div class="row">
+                       <div class="col-md-6 col-sm-12 mt-4">
                            <div class="card">
                                <div class="card-body">
                                    <h4 class="card-title text-success text-center"><i class="fas fa-shopping-basket"></i> Products</h4>
@@ -40,7 +40,7 @@
                                </div>
                            </div>
                        </div>
-                       <div class="col">
+                       <div class="col-md-6 col-sm-12 mt-4">
                            <div class="card">
                                <div class="card-body">
                                    <h4 class="card-title text-center text-danger"><i class="fas fa-shopping-cart"></i> Orders</h4>
@@ -65,9 +65,9 @@
                <div class="card-body">
                    <div class="widget-wrapper w-100">
                        <div class="list-group">
-                           <a href="" class="list-group-item">User charts</a>
-                           <a href="" class="list-group-item">Product charts</a>
-                           <a href="" class="list-group-item">Sales charts</a>
+                           <a href="{{route('admin.chart.users')}}" class="list-group-item waves-effect">User statistics</a>
+                           <a href="" class="list-group-item waves-effect">Product statistics</a>
+                           <a href="" class="list-group-item waves-effect">Sales statistics</a>
                        </div>
                    </div>
                </div>

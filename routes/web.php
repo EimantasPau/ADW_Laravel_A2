@@ -50,7 +50,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
 
     //Chart routes
-    Route::get('/charts', 'ChartController@index')->name('admin.chart.index');
+    Route::prefix('charts')->group(function() {
+        Route::get('/', 'ChartController@index')->name('admin.chart.index');
+        Route::get('/users', 'ChartController@users')->name('admin.chart.users');
+    });
+
+
 });
 
 //Cart routes

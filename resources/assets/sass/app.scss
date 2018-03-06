@@ -121,7 +121,13 @@ div.dataTables_wrapper div.dataTables_info {
   -webkit-filter: drop-shadow( -2px -2px 2px #888 );
   filter: drop-shadow( -2px -2px 2px #888 );
 }
-
-.card-footer p {
+#general-statistics .card {
+  border-radius:50px!important;
+}
+#general-statistics .card-footer {
+  border-bottom-left-radius: 50px!important;
+  border-bottom-right-radius: 50px!important;
+}
+#general-statistics .card-footer p {
   font-size: 2rem!important;
 }
