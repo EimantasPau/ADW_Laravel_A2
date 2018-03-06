@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.7 on 2018-02-28 16:30:18.
+ * Generated for Laravel 5.6.8 on 2018-03-06 17:09:38.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3146,8 +3146,8 @@ namespace Illuminate\Support\Facades {
          * @param string $key The key of the item to store.
          * @param mixed $value The value of the item to store, must be serializable.
          * @param null|int|\DateInterval $ttl Optional. The TTL value of this item. If no value is sent and
-         *                                     the driver supports TTL then the library may set a default value
-         *                                     for it or let the driver take care of that.
+         *                                      the driver supports TTL then the library may set a default value
+         *                                      for it or let the driver take care of that.
          * @return bool True on success and false on failure.
          * @throws \Psr\SimpleCache\InvalidArgumentException
          *   MUST be thrown if the $key string is not a legal value.
@@ -3176,8 +3176,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Psr\SimpleCache\iterable $values A list of key => value pairs for a multiple-set operation.
          * @param null|int|\DateInterval $ttl Optional. The TTL value of this item. If no value is sent and
-         *                                      the driver supports TTL then the library may set a default value
-         *                                      for it or let the driver take care of that.
+         *                                       the driver supports TTL then the library may set a default value
+         *                                       for it or let the driver take care of that.
          * @return bool True on success and false on failure.
          * @throws \Psr\SimpleCache\InvalidArgumentException
          *   MUST be thrown if $values is neither an array nor a Traversable,
@@ -7826,7 +7826,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @static 
          */ 
         public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
@@ -7859,7 +7859,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The request cookies ($_COOKIE)
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @return static 
          * @static 
          */ 
@@ -12973,6 +12973,186 @@ namespace Laravel\Socialite\Facades {
  
 }
 
+namespace ConsoleTVs\Charts\Facades { 
+
+    class Charts {
+        
+        /**
+         * Return a new chart instance.
+         *
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Chart 
+         * @static 
+         */ 
+        public static function create($type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::create($type, $library);
+        }
+        
+        /**
+         * Return a new realtime chart instance.
+         *
+         * @param string $url
+         * @param int $interval
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Realtime 
+         * @static 
+         */ 
+        public static function realtime($url, $interval, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::realtime($url, $interval, $type, $library);
+        }
+        
+        /**
+         * Return a new database chart instance.
+         *
+         * @param \Illuminate\Support\Collection $data
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Database 
+         * @static 
+         */ 
+        public static function database($data, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::database($data, $type, $library);
+        }
+        
+        /**
+         * Return a new math chart instance.
+         *
+         * @param string $function
+         * @param array $interval
+         * @param int $amplitude
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Math 
+         * @static 
+         */ 
+        public static function math($function, $interval, $amplitude, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::math($function, $interval, $amplitude, $type, $library);
+        }
+        
+        /**
+         * Return a new multi chart instance.
+         *
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Multi 
+         * @static 
+         */ 
+        public static function multi($type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::multi($type, $library);
+        }
+        
+        /**
+         * Return a new multi database chart instance.
+         *
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\MultiDatabase 
+         * @static 
+         */ 
+        public static function multiDatabase($type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::multiDatabase($type, $library);
+        }
+        
+        /**
+         * Return a new url chart instance.
+         *
+         * @param string $url
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Url 
+         * @static 
+         */ 
+        public static function url($url, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::url($url, $type, $library);
+        }
+        
+        /**
+         * Return a new multi url chart instance.
+         *
+         * @param string $url
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\MultiUrl 
+         * @static 
+         */ 
+        public static function multiUrl($url, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::multiUrl($url, $type, $library);
+        }
+        
+        /**
+         * Return all the libraries available.
+         *
+         * @param string $type
+         * @return array 
+         * @static 
+         */ 
+        public static function libraries($type = null)
+        {
+            return \ConsoleTVs\Charts\Builder::libraries($type);
+        }
+        
+        /**
+         * Return all the types available.
+         *
+         * @param string $library
+         * @return array 
+         * @static 
+         */ 
+        public static function types($library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::types($library);
+        }
+        
+        /**
+         * Return the library styles.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function styles($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::styles($libraries);
+        }
+        
+        /**
+         * Return the library scripts.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function scripts($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::scripts($libraries);
+        }
+        
+        /**
+         * Return the library styles.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function assets($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::assets($libraries);
+        }
+         
+    }
+ 
+}
+
 namespace Darryldecode\Cart\Facades { 
 
     class CartFacade {
@@ -13406,6 +13586,74 @@ namespace DevMarketer\EasyNav {
         {
             return \DevMarketer\EasyNav\EasyNav::uriDoesContain($search, $active, $strict);
         }
+         
+    }
+ 
+}
+
+namespace Intervention\Image\Facades { 
+
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param integer $width
+         * @param integer $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param integer $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace Jenssegers\Date { 
+
+    class Date {
          
     }
  
@@ -15583,9 +15831,15 @@ namespace  {
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 
+    class Charts extends \ConsoleTVs\Charts\Facades\Charts {}
+
     class Cart extends \Darryldecode\Cart\Facades\CartFacade {}
 
     class Nav extends \DevMarketer\EasyNav\EasyNavFacade {}
+
+    class Image extends \Intervention\Image\Facades\Image {}
+
+    class Date extends \Jenssegers\Date\Date {}
  
 }
 

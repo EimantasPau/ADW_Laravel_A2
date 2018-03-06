@@ -31,7 +31,9 @@
                            <!--Product data-->
                            <h2 class="h2-responsive mt-4 font-bold">{{$product->name}}</h2>
                            <hr>
+                            <span id="product-rating"></span><span style="font-size:40px;" class="badge badge-pill cyan">{{$product->reviews->avg('rating')}}</span>
 
+                           <hr>
                            <h2>
                                <span class="badge blue">£{{$product->price}}</span>
                            </h2>
@@ -72,8 +74,8 @@
                <div class="row mt-5">
 
                    <!--Heading-->
-                   <div class="col-sm-12 reviews wow fadeIn mb-4" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                       <h2 class="h2-responsive font-bold">Reviews</h2>
+                   <div class="col-sm-12 reviews wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
+                       <h2 class="h2-responsive font-bold mb-4">Reviews ({{$product->reviews->count()}})</h2>
 
                     @foreach($product->reviews as $review)
                         <!--First review-->
@@ -90,12 +92,14 @@
                                                 <i class="fa fa-star blue-text"></i>
                                             </li>
                                             @else
+                                            <li>
                                                 <i class="fa fa-star grey-text"></i>
+                                            </li>
                                             @endif
                                         @endforeach
 
                                     </ul>
-                                    <p>{{$review->body}}</p>
+                                    <p style="white-space: pre-wrap;">{{$review->body}}</p>
                                 </div>
                             </div>
                    @endforeach
@@ -106,7 +110,7 @@
 
 
            <div class="col-sm-12 reviews wow fadeIn d-block mb-4 mt-4" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-               <h2 class="h2-responsive font-bold">Leave a product review</h2>
+               <h3 class="h3-responsive font-bold">Leave a product review</h3>
            </div>
            <div class="col-sm-12">
                <form action="{{route('product.review.store', $product->id)}}" method="POST" class="d-block">
@@ -141,6 +145,7 @@
 @push('scripts')
     <script src="{{asset('js/star-rating-svg.js')}}"></script>
     <script type="text/javascript">
+        var rating = {!! json_encode($product->reviews->avg('rating')) !!};
         // specify the gradient start and end for the selected stars
         $(".my-rating").starRating({
             starSize: 40,
@@ -149,6 +154,7 @@
             useFullStars: true,
             disableAfterRate: false,
             initialRating: 0,
+            forceRoundUp: true,
             starGradient: {
                 start: '#93BFE2',
                 end: '#105694'
@@ -157,5 +163,19 @@
                 $('#rating').val(currentRating);
             }
         });
+
+        $("#product-rating")
+            .starRating({
+                starSize: 40,
+                strokeWidth: 1,
+                strokeColor: 'black',
+                disableAfterRate: false,
+                initialRating: rating,
+                readOnly: true,
+                ratedColor: 'red',
+                starShape: 'rounded'
+
+            });
+
     </script>
     @endpush

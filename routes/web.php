@@ -48,6 +48,9 @@ Route::prefix('admin')->group(function() {
     Route::delete('/categories/{category}', 'CategoryController@destroy')->name('admin.category.destroy');
     Route::put('/categories/{category}', 'CategoryController@update')->name('admin.category.update');
     Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
+
+    //Chart routes
+    Route::get('/charts', 'ChartController@index')->name('admin.chart.index');
 });
 
 //Cart routes

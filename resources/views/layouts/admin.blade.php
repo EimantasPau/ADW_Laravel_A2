@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- Styles -->
+    @stack('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -58,18 +59,18 @@
     <main class="py-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-2 offset-1 d-flex align-items-stretch">
+                <div class="col-xl-2 col-lg-3 offset-xl-1 d-flex align-items-stretch mb-sm-4">
                     <div class="widget-wrapper w-100">
                         <div class="list-group">
                             <a href="{{route('admin.home')}}" class="list-group-item {{ Nav::isRoute('admin.home') }}">Home</a>
                             <a href="{{route('admin.product.index')}}" class="list-group-item {{ Nav::isResource('products', '/admin') }}" >Product management</a>
                             <a href="{{route('admin.category.index')}}" class="list-group-item {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
-                            <a href="#" class="list-group-item ">Reports and Charts</a>
+                            <a href="{{route('admin.chart.index')}}" class="list-group-item {{ Nav::isResource('charts', '/admin') }}">Statistics and Reporting</a>
                             <a href="#" class="list-group-item ">General settings</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="col-lg-8">
                     @yield('content')
                 </div>
             </div>
@@ -87,7 +88,7 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-@stack('scripts');
+@stack('scripts')
 
 </body>
 </html>

@@ -22286,3 +22286,7 @@ div.dataTables_wrapper div.dataTables_info {
   filter: drop-shadow(-2px -2px 2px #888);
 }
 
+.card-footer p {
+  font-size: 2rem !important;
+}
+
