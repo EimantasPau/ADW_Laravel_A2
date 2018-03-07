@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.admin-charts-reports')
 @section('content')
    <div class="row">
-       <div class="col-md-9">
+       <div class="col-md-12">
            <div class="card w-100">
                <div class="card-header">
                   General statistics
@@ -52,24 +52,6 @@
                        </div>
                    </div>
 
-               </div>
-           </div>
-       </div>
-
-       <div class="col-md-3">
-           <!--Panel-->
-           <div class="card w-100">
-               <div class="card-header">
-                   Charts
-               </div>
-               <div class="card-body sidenav-list">
-                   <div class="widget-wrapper w-100">
-                       <div class="list-group">
-                           <a href="{{route('admin.chart.users')}}" class="list-group-item waves-effect">User statistics</a>
-                           <a href="{{route('admin.chart.products')}}" class="list-group-item waves-effect">Product statistics</a>
-                           <a href="" class="list-group-item waves-effect">Sales statistics</a>
-                       </div>
-                   </div>
                </div>
            </div>
        </div>
