@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
     <div class="row">
-        <div class="col-md-8">
-            <div class="card card-default w-100">
-                <div class="card-header white-text">
+        <div class="col-md-9">
+            <div class="card w-100">
+                <div class="card-header">
                     User statistics
                 </div>
                 <div class="card-body">
@@ -22,15 +22,15 @@
                                 <div v-if="isGroupByDay" class="mt-4">
                                     <label for="month">Month</label>
                                     <select name="month" id="month" class="custom-select w-100">
-                                        <option value="1">January</option>
-                                        <option value="2">February</option>
-                                        <option value="3">March</option>
-                                        <option value="4">April</option>
-                                        <option value="5">May</option>
-                                        <option value="6">June</option>
-                                        <option value="7">July</option>
-                                        <option value="8">August</option>
-                                        <option value="9">September</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
                                         <option value="10">October</option>
                                         <option value="11">November</option>
                                         <option value="12">December</option>
@@ -48,19 +48,19 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary mt-4">View</button>
+                        <button type="submit" class="btn btn-outline-primary mt-4">View chart</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <!--Panel-->
             <div class="card card-default w-100">
                 <div class="card-header white-text">
                     Charts
                 </div>
-                <div class="card-body">
+                <div class="card-body sidenav-list">
                     <div class="widget-wrapper w-100">
                         <div class="list-group">
                             <a href="{{route('admin.chart.users')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">User statistics</a>
@@ -76,10 +76,7 @@
 @endsection
 
 @push('styles')
-    {!! Charts::styles() !!}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css" />
-
+    {!! Charts::styles(['chartjs']) !!}
 @endpush
 
 @push('scripts')
@@ -87,10 +84,6 @@
     {!! $chart->script()!!}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
-    <script>
-        $('#dateFrom').bootstrapMaterialDatePicker({ format : 'dddd DD MMMM YYYY', time: false, okText: 'Select'});
-        $('#dateTo').bootstrapMaterialDatePicker({ format : 'dddd DD MMMM YYYY', time: false, okText: 'Select' });
-    </script>
 
     <script>
         var userChartOptions = new Vue({

@@ -14,8 +14,8 @@
                 </div>
             </div>
             <div class="col-lg-8 d-flex align-items-stretch">
-                <div class="card card-default w-100">
-                    <div class="card-header white-text">
+                <div class="card w-100">
+                    <div class="card-header">
                         Your orders
                     </div>
                     <div class="card-body">

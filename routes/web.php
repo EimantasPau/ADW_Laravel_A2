@@ -53,6 +53,8 @@ Route::prefix('admin')->group(function() {
     Route::prefix('charts')->group(function() {
         Route::get('/', 'ChartController@index')->name('admin.chart.index');
         Route::get('/users', 'ChartController@users')->name('admin.chart.users');
+        Route::get('/products', 'ChartController@products')->name('admin.chart.products');
+        Route::get('/sales', 'ChartController@sales')->name('admin.chart.sales');
     });
 
 

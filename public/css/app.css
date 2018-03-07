@@ -22144,7 +22144,9 @@ table.table-sm td {
 }
 
 .card-header {
-  background-color: #1C2A48;
+  background-color: #617ba0;
+  font-weight: bold;
+  font-size: 1.25rem;
   color: #FFFFFF;
 }
 
@@ -22297,5 +22299,13 @@ div.dataTables_wrapper div.dataTables_info {
 
 #general-statistics .card-footer p {
   font-size: 2rem !important;
+}
+
+.sidenav-list {
+  padding: 0 !important;
+}
+
+body {
+  min-height: 100vh;
 }
 

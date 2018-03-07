@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
+            <div class="card">
                 <div class="card-header">Reset Password</div>
 
                 <div class="card-body">
@@ -14,11 +14,11 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
-                            <div class="col-md-6">
+
+                            <div class="col-md-12">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email or old('email') }}" required autofocus>
-
+                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
