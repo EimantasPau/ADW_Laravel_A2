@@ -19,6 +19,13 @@ class CartController extends Controller
             return redirect()->back();
         }
         $userId = Auth::user()->id;
+        if($item = Cart::session($userId)->get($id)){
+            $product = Product::findOrFail($id);
+            if($item->quantity == $product->quantity){
+                Session::flash('errorMessage', "We currently do not have more of this item in stock.");
+                return redirect()->back();
+            }
+        }
         try {
             Cart::session($userId)->add([
                     'id' => $product->id,
