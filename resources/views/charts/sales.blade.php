@@ -1,7 +1,7 @@
-@extends('layouts.admin-charts-reports')
+@extends('layouts.admin')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card w-100">
                 <div class="card-header">
                     Sales statistics
@@ -21,7 +21,7 @@
                                     <option value="Year" {{ old('category_id') == 1 ? 'selected' : '' }}>Year</option>
                                 </select>
                                 <div v-if="isGroupByDay" class="mt-4">
-                                    <label for="month">Month</label>
+                                    <label for="month">Select month</label>
                                     <select name="month" id="month" class="custom-select w-100">
                                         <option value="01">January</option>
                                         <option value="02">February</option>
@@ -38,7 +38,7 @@
                                     </select>
                                 </div>
                                 <div v-if="isGroupByMonth || isGroupByDay" class="mt-4">
-                                    <label for="year">Year</label>
+                                    <label for="year">Select year</label>
                                     <select name="year" id="year" class="custom-select w-100">
                                         <option value="2015">2015</option>
                                         <option value="2016">2016</option>
@@ -54,6 +54,7 @@
                 </div>
             </div>
         </div>
+        @include('partials.chartMenu')
     </div>
 
 @endsection

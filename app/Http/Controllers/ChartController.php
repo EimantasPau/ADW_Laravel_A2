@@ -65,18 +65,20 @@ class ChartController extends Controller
             ->elementLabel("Products")
             ->groupBy('category_id', 'category.name');
 
-        //create a chart for displaying best rated products
-        $mostPopular = Product::with('reviews')->select( 'products.name', DB::raw('avg(reviews.rating) as rating'))
+
+        $mostPopular = Product::with('reviews')->select( 'products.name', DB::raw('avg(reviews.rating) as rating'), DB::raw('count(reviews.rating) as ratingCount'))
             ->join('reviews', 'reviews.product_id', '=', 'products.id')
             ->groupBy('products.id')
-            ->orderBy('rating')
+            ->orderBy('rating', 'desc')
+            ->orderBy('ratingCount', 'desc')
             ->take(10)->get();
-
+        //create a chart for displaying best rated products
         $chartProducts = Charts::create('bar', 'chartjs')
             ->title('10 Best rated products')
             ->elementLabel('Average rating')
             ->labels($mostPopular->pluck('name'))
             ->values($mostPopular->pluck('rating'));
+
 
         return view('charts.products', compact('chartCategories', 'chartProducts'));
     }

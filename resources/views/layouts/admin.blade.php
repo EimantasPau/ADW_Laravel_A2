@@ -68,7 +68,8 @@
                                     <a href="{{route('admin.home')}}" class="list-group-item waves-effect {{ Nav::isRoute('admin.home') }}">Home</a>
                                     <a href="{{route('admin.product.index')}}" class="list-group-item waves-effect {{ Nav::isResource('products', '/admin') }}" >Product management</a>
                                     <a href="{{route('admin.category.index')}}" class="list-group-item waves-effect {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
-                                    <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">Statistics and Reporting</a>
+                                    <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">Statistics</a>
+                                    <a href="{{route('admin.report.index')}}" class="list-group-item waves-effect {{ Nav::isResource('reports', '/admin') }}">Reports</a>
                                     <a href="#" class="list-group-item waves-effect ">General settings</a>
                                 </div>
                             </div>

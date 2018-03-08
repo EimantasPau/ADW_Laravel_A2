@@ -1,7 +1,7 @@
-@extends('layouts.admin-charts-reports')
+@extends('layouts.admin')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card w-100">
                 <div class="card-header">
                     User statistics
@@ -20,7 +20,7 @@
                                     <option value="Year">Year</option>
                                 </select>
                                 <div v-if="isGroupByDay" class="mt-4">
-                                    <label for="month">Month</label>
+                                    <label for="month">Select month</label>
                                     <select name="month" id="month" class="custom-select w-100">
                                         <option value="01">January</option>
                                         <option value="02">February</option>
@@ -37,7 +37,7 @@
                                     </select>
                                 </div>
                                 <div v-if="isGroupByMonth || isGroupByDay" class="mt-4">
-                                    <label for="year">Year</label>
+                                    <label for="year">Select year</label>
                                     <select name="year" id="year" class="custom-select w-100">
                                         <option value="2015">2015</option>
                                         <option value="2016">2016</option>
@@ -53,6 +53,7 @@
                 </div>
             </div>
         </div>
+        @include('partials.chartMenu')
     </div>
 
 @endsection
@@ -67,6 +68,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
 
+    <script>
+        console.log({{json_encode(old('groupBy'))}});
+    </script>
     <script>
         var userChartOptions = new Vue({
             el: '#userChartOptions',
@@ -84,7 +88,6 @@
                     return this.groupBy === 'Year';
                 }
             }
-
         });
     </script>
 @endpush

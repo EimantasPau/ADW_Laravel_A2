@@ -1,7 +1,7 @@
-@extends('layouts.admin-charts-reports')
+@extends('layouts.admin')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card w-100">
                 <div class="card-header">
                     Product statistics
@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+        @include('partials.chartMenu')
     </div>
 
 @endsection

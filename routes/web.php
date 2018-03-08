@@ -57,6 +57,12 @@ Route::prefix('admin')->group(function() {
         Route::get('/sales', 'ChartController@sales')->name('admin.chart.sales');
     });
 
+    //Report routes
+    Route::prefix('reports')->group(function() {
+        Route::get('/', 'ReportController@index')->name('admin.report.index');
+        Route::get('/generate', 'ReportController@generate')->name('admin.report.generate');
+    });
+
 
 });
 
