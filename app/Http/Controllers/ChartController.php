@@ -32,6 +32,7 @@ class ChartController extends Controller
             ->title('Registered users')
             ->elementLabel("Users");
 
+
         //if the group by option is used, group the data in the chosen way
         if($request->has('groupBy')){
             $groupBy = $request->input('groupBy');

@@ -11,21 +11,21 @@ require('jquery');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 import Datepicker from 'vuejs-datepicker'
-import moment from 'moment'
 var reportPage = new Vue({
     el: '#reportFormContainer',
     components: {
-      Datepicker
+        Datepicker
     },
     data: function () {
         return {
-            reportModel: ''
+            reportModel: 'user',
+            dateFrom: '',
+            dateTo: '',
+            userOrderBy: 'name',
+            order: 'asc',
+            reportType: 'pdf',
+            orderOrderBy: 'total_price'
         }
     },
     computed: {
@@ -40,6 +40,13 @@ var reportPage = new Vue({
         }
     }
 });
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+
 
 
 

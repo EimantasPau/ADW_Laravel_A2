@@ -20,10 +20,14 @@ class OrderController extends Controller
     }
 
     public function checkout() {
-        if(!Cart::session(Auth::user()->id)->isEmpty()){
-            $total = Cart::session(Auth::user()->id)->getTotal();
-            $orderItems = Cart::session(Auth::user()->id)->getContent();
-            return view('cart.checkout', ['total'=> $total, 'orderItems'=>$orderItems]);
+        try {
+            if (!Cart::session(Auth::user()->id)->isEmpty()) {
+                $total = Cart::session(Auth::user()->id)->getTotal();
+                $orderItems = Cart::session(Auth::user()->id)->getContent();
+                return view('cart.checkout', ['total' => $total, 'orderItems' => $orderItems]);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('order.checkout')->with('error', $e->getMessage());
         }
         return redirect('/');
     }
