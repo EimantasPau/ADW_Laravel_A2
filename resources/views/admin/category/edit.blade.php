@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="col-lg-12 d-flex align-items-stretch">
     <!--Panel-->
     <div class="card card-default w-100">
-        <div class="card-header white-text">
+        <div class="card-header">
             Edit the category
         </div>
         <div class="card-body">
@@ -29,4 +30,5 @@
         </div>
     </div>
     <!--/.Panel-->
+    </div>
 @endsection

@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="offset-3 col-lg-6">
-                <div class="card card-default">
-                    <div class="card-header white-text">
+                <div class="card">
+                    <div class="card-header">
                         Payment
                     </div>
                     <div class="card-body">

@@ -59,16 +59,23 @@
     <main class="py-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-2 col-lg-3 offset-xl-1 d-flex align-items-stretch mb-sm-4">
-                    <div class="widget-wrapper w-100">
-                        <div class="list-group">
-                            <a href="{{route('admin.home')}}" class="list-group-item {{ Nav::isRoute('admin.home') }}">Home</a>
-                            <a href="{{route('admin.product.index')}}" class="list-group-item {{ Nav::isResource('products', '/admin') }}" >Product management</a>
-                            <a href="{{route('admin.category.index')}}" class="list-group-item {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
-                            <a href="{{route('admin.chart.index')}}" class="list-group-item {{ Nav::isResource('charts', '/admin') }}">Statistics and Reporting</a>
-                            <a href="#" class="list-group-item ">General settings</a>
+                <div class="col-xl-2 col-lg-3 offset-xl-1 mb-sm-4">
+                    <div class="card w-100">
+                        <div class="card-header">Menu</div>
+                        <div class="card-body sidenav-list">
+                            <div class="widget-wrapper w-100">
+                                <div class="list-group">
+                                    <a href="{{route('admin.home')}}" class="list-group-item waves-effect {{ Nav::isRoute('admin.home') }}">Home</a>
+                                    <a href="{{route('admin.product.index')}}" class="list-group-item waves-effect {{ Nav::isResource('products', '/admin') }}" >Product management</a>
+                                    <a href="{{route('admin.category.index')}}" class="list-group-item waves-effect {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
+                                    <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">Statistics</a>
+                                    <a href="{{route('admin.report.index')}}" class="list-group-item waves-effect {{ Nav::isResource('reports', '/admin') }}">Reports</a>
+                                    <a href="#" class="list-group-item waves-effect ">General settings</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col-lg-8">
                     @yield('content')
@@ -78,7 +85,6 @@
 
     </main>
 </div>
-
 <!-- Scripts -->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>

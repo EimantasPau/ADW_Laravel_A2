@@ -50,7 +50,20 @@ Route::prefix('admin')->group(function() {
     Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
 
     //Chart routes
-    Route::get('/charts', 'ChartController@index')->name('admin.chart.index');
+    Route::prefix('charts')->group(function() {
+        Route::get('/', 'ChartController@index')->name('admin.chart.index');
+        Route::get('/users', 'ChartController@users')->name('admin.chart.users');
+        Route::get('/products', 'ChartController@products')->name('admin.chart.products');
+        Route::get('/sales', 'ChartController@sales')->name('admin.chart.sales');
+    });
+
+    //Report routes
+    Route::prefix('reports')->group(function() {
+        Route::get('/', 'ReportController@index')->name('admin.report.index');
+        Route::get('/generate', 'ReportController@generate')->name('admin.report.generate');
+    });
+
+
 });
 
 //Cart routes

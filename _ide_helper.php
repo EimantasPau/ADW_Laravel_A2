@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.8 on 2018-03-06 17:09:38.
+ * Generated for Laravel 5.6.15 on 2018-04-04 19:34:16.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2290,6 +2290,21 @@ namespace Illuminate\Support\Facades {
         public static function logout()
         {
             \Illuminate\Auth\SessionGuard::logout();
+        }
+        
+        /**
+         * Invalid other sessions for the current user.
+         * 
+         * The application must be using the AuthenticateSession middleware.
+         *
+         * @param string $password
+         * @param string $attribute
+         * @return $this 
+         * @static 
+         */ 
+        public static function logoutOtherDevices($password, $attribute = 'password')
+        {
+            return \Illuminate\Auth\SessionGuard::logoutOtherDevices($password, $attribute);
         }
         
         /**
@@ -9049,6 +9064,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Determine if the request contains a non-empty value for any of the given inputs.
+         *
+         * @param string|array $keys
+         * @return bool 
+         * @static 
+         */ 
+        public static function anyFilled($keys)
+        {
+            return \Illuminate\Http\Request::anyFilled($keys);
+        }
+        
+        /**
          * Get the keys for all of the input and files.
          *
          * @return array 
@@ -9240,6 +9267,16 @@ namespace Illuminate\Support\Facades {
         public static function validate($rules, $params = null)
         {
             return \Illuminate\Http\Request::validate($rules, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hasValidSignature()
+        {
+            return \Illuminate\Http\Request::hasValidSignature();
         }
          
     }
@@ -11723,6 +11760,46 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Create a signed route URL for a named route.
+         *
+         * @param string $name
+         * @param array $parameters
+         * @param \DateTimeInterface|int $expiration
+         * @return string 
+         * @static 
+         */ 
+        public static function signedRoute($name, $parameters = array(), $expiration = null)
+        {
+            return \Illuminate\Routing\UrlGenerator::signedRoute($name, $parameters, $expiration);
+        }
+        
+        /**
+         * Create a temporary signed route URL for a named route.
+         *
+         * @param string $name
+         * @param \DateTimeInterface|int $expiration
+         * @param array $parameters
+         * @return string 
+         * @static 
+         */ 
+        public static function temporarySignedRoute($name, $expiration, $parameters = array())
+        {
+            return \Illuminate\Routing\UrlGenerator::temporarySignedRoute($name, $expiration, $parameters);
+        }
+        
+        /**
+         * Determine if the given request has a valid signature.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasValidSignature($request)
+        {
+            return \Illuminate\Routing\UrlGenerator::hasValidSignature($request);
+        }
+        
+        /**
          * Get the URL to a named route.
          *
          * @param string $name
@@ -11929,6 +12006,18 @@ namespace Illuminate\Support\Facades {
         public static function setSessionResolver($sessionResolver)
         {
             return \Illuminate\Routing\UrlGenerator::setSessionResolver($sessionResolver);
+        }
+        
+        /**
+         * Set the encryption key resolver.
+         *
+         * @param callable $keyResolver
+         * @return $this 
+         * @static 
+         */ 
+        public static function setKeyResolver($keyResolver)
+        {
+            return \Illuminate\Routing\UrlGenerator::setKeyResolver($keyResolver);
         }
         
         /**
@@ -12877,102 +12966,6 @@ namespace Illuminate\Support\Facades {
  
 }
 
-namespace Laravel\Socialite\Facades { 
-
-    class Socialite {
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */ 
-        public static function with($driver)
-        {
-            return \Laravel\Socialite\SocialiteManager::with($driver);
-        }
-        
-        /**
-         * Build an OAuth 2 provider instance.
-         *
-         * @param string $provider
-         * @param array $config
-         * @return \Laravel\Socialite\Two\AbstractProvider 
-         * @static 
-         */ 
-        public static function buildProvider($provider, $config)
-        {
-            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
-        }
-        
-        /**
-         * Format the server configuration.
-         *
-         * @param array $config
-         * @return array 
-         * @static 
-         */ 
-        public static function formatConfig($config)
-        {
-            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
-        }
-        
-        /**
-         * Get the default driver name.
-         *
-         * @throws \InvalidArgumentException
-         * @return string 
-         * @static 
-         */ 
-        public static function getDefaultDriver()
-        {
-            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
-        }
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */ 
-        public static function driver($driver = null)
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::driver($driver);
-        }
-        
-        /**
-         * Register a custom driver creator Closure.
-         *
-         * @param string $driver
-         * @param \Closure $callback
-         * @return $this 
-         * @static 
-         */ 
-        public static function extend($driver, $callback)
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
-        }
-        
-        /**
-         * Get all of the created "drivers".
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getDrivers()
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::getDrivers();
-        }
-         
-    }
- 
-}
-
 namespace ConsoleTVs\Charts\Facades { 
 
     class Charts {
@@ -13147,6 +13140,245 @@ namespace ConsoleTVs\Charts\Facades {
         public static function assets($libraries = array())
         {
             return \ConsoleTVs\Charts\Builder::assets($libraries);
+        }
+         
+    }
+ 
+}
+
+namespace Laravel\Socialite\Facades { 
+
+    class Socialite {
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */ 
+        public static function with($driver)
+        {
+            return \Laravel\Socialite\SocialiteManager::with($driver);
+        }
+        
+        /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */ 
+        public static function buildProvider($provider, $config)
+        {
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
+        }
+        
+        /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */ 
+        public static function formatConfig($config)
+        {
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @throws \InvalidArgumentException
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultDriver()
+        {
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */ 
+        public static function driver($driver = null)
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */ 
+        public static function extend($driver, $callback)
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDrivers()
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+         
+    }
+ 
+}
+
+namespace Barryvdh\DomPDF { 
+
+    class Facade {
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */ 
+        public static function getDomPDF()
+        {
+            return \Barryvdh\DomPDF\PDF::getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return $this 
+         * @static 
+         */ 
+        public static function setPaper($paper, $orientation = 'portrait')
+        {
+            return \Barryvdh\DomPDF\PDF::setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return $this 
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+            return \Barryvdh\DomPDF\PDF::setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+            return \Barryvdh\DomPDF\PDF::loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Set/Change an option in DomPdf
+         *
+         * @param array $options
+         * @return static 
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+            return \Barryvdh\DomPDF\PDF::setOptions($options);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output()
+        {
+            return \Barryvdh\DomPDF\PDF::output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+            return \Barryvdh\DomPDF\PDF::save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::stream($filename);
         }
          
     }
@@ -13659,6 +13891,660 @@ namespace Jenssegers\Date {
  
 }
 
+namespace Maatwebsite\Excel\Facades { 
+
+    class Excel {
+        
+        /**
+         * Create a new file
+         *
+         * @param $filename
+         * @param callable|null $callback
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function create($filename, $callback = null)
+        {
+            return \Maatwebsite\Excel\Excel::create($filename, $callback);
+        }
+        
+        /**
+         * Load an existing file
+         *
+         * @param string $file The file we want to load
+         * @param callback|null $callback
+         * @param string|null $encoding
+         * @param bool $noBasePath
+         * @param callback|null $callbackConfigReader
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */ 
+        public static function load($file, $callback = null, $encoding = null, $noBasePath = false, $callbackConfigReader = null)
+        {
+            return \Maatwebsite\Excel\Excel::load($file, $callback, $encoding, $noBasePath, $callbackConfigReader);
+        }
+        
+        /**
+         * Set select sheets
+         *
+         * @param $sheets
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */ 
+        public static function selectSheets($sheets = array())
+        {
+            return \Maatwebsite\Excel\Excel::selectSheets($sheets);
+        }
+        
+        /**
+         * Select sheets by index
+         *
+         * @param array $sheets
+         * @return $this 
+         * @static 
+         */ 
+        public static function selectSheetsByIndex($sheets = array())
+        {
+            return \Maatwebsite\Excel\Excel::selectSheetsByIndex($sheets);
+        }
+        
+        /**
+         * Batch import
+         *
+         * @param $files
+         * @param callback $callback
+         * @return \PHPExcel 
+         * @static 
+         */ 
+        public static function batch($files, $callback)
+        {
+            return \Maatwebsite\Excel\Excel::batch($files, $callback);
+        }
+        
+        /**
+         * Create a new file and share a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function shareView($view, $data = array(), $mergeData = array())
+        {
+            return \Maatwebsite\Excel\Excel::shareView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Create a new file and load a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array())
+        {
+            return \Maatwebsite\Excel\Excel::loadView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Set filters
+         *
+         * @param array $filters
+         * @return \Excel 
+         * @static 
+         */ 
+        public static function registerFilters($filters = array())
+        {
+            return \Maatwebsite\Excel\Excel::registerFilters($filters);
+        }
+        
+        /**
+         * Enable certain filters
+         *
+         * @param string|array $filter
+         * @param bool|false|string $class
+         * @return \Excel 
+         * @static 
+         */ 
+        public static function filter($filter, $class = false)
+        {
+            return \Maatwebsite\Excel\Excel::filter($filter, $class);
+        }
+        
+        /**
+         * Get register, enabled (or both) filters
+         *
+         * @param string|boolean $key [description]
+         * @return array 
+         * @static 
+         */ 
+        public static function getFilters($key = false)
+        {
+            return \Maatwebsite\Excel\Excel::getFilters($key);
+        }
+         
+    }
+ 
+}
+
+namespace Jimmyjs\ReportGenerator\Facades { 
+
+    class PdfReportFacade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function make()
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::make();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function stream()
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::stream();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function download($filename)
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::download($filename);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function of($title, $meta, $query, $columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::of($title, $meta, $query, $columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showHeader($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::showHeader($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showMeta($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::showMeta($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function simple()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::simple();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withoutManipulation()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::withoutManipulation();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPaper($paper)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::setPaper($paper);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumn($columnName, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::editColumn($columnName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumns($columnNames, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::editColumns($columnNames, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showTotal($columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::showTotal($columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function groupBy($column)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::groupBy($column);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function limit($limit)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::limit($limit);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setOrientation($orientation)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::setOrientation($orientation);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCss($styles)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\PdfReport::setCss($styles);
+        }
+         
+    }
+
+    class ExcelReportFacade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setFormat($format)
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::setFormat($format);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function download($filename)
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::download($filename);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function simpleDownload($filename)
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::simpleDownload($filename);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function of($title, $meta, $query, $columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::of($title, $meta, $query, $columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showHeader($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::showHeader($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showMeta($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::showMeta($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function simple()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::simple();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withoutManipulation()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::withoutManipulation();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPaper($paper)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::setPaper($paper);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumn($columnName, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::editColumn($columnName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumns($columnNames, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::editColumns($columnNames, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showTotal($columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::showTotal($columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function groupBy($column)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::groupBy($column);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function limit($limit)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::limit($limit);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setOrientation($orientation)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::setOrientation($orientation);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCss($styles)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\ExcelReport::setCss($styles);
+        }
+         
+    }
+
+    class CSVReportFacade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function download($filename)
+        {
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::download($filename);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function of($title, $meta, $query, $columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::of($title, $meta, $query, $columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showHeader($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::showHeader($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showMeta($value = true)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::showMeta($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function simple()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::simple();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withoutManipulation()
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::withoutManipulation();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPaper($paper)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::setPaper($paper);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumn($columnName, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::editColumn($columnName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function editColumns($columnNames, $options)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::editColumns($columnNames, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function showTotal($columns)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::showTotal($columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function groupBy($column)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::groupBy($column);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function limit($limit)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::limit($limit);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setOrientation($orientation)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::setOrientation($orientation);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCss($styles)
+        {
+            //Method inherited from \Jimmyjs\ReportGenerator\ReportGenerator            
+            return \Jimmyjs\ReportGenerator\ReportMedia\CSVReport::setCss($styles);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -13683,6 +14569,8 @@ namespace  {
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
 
     class Crypt extends \Illuminate\Support\Facades\Crypt {}
+
+    class Charts extends \ConsoleTVs\Charts\Facades\Charts {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
@@ -14463,6 +15351,20 @@ namespace  {
             }
          
             /**
+             * Add a subselect expression to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @throws \InvalidArgumentException
+             * @static 
+             */ 
+            public static function selectSub($query, $as)
+            {    
+                return \Illuminate\Database\Query\Builder::selectSub($query, $as);
+            }
+         
+            /**
              * Add a new "raw" select expression to the query.
              *
              * @param string $expression
@@ -14476,7 +15378,7 @@ namespace  {
             }
          
             /**
-             * Add a subselect expression to the query.
+             * Makes "from" fetch from a subquery.
              *
              * @param \Closure|\Illuminate\Database\Query\Builder|string $query
              * @param string $as
@@ -14484,9 +15386,22 @@ namespace  {
              * @throws \InvalidArgumentException
              * @static 
              */ 
-            public static function selectSub($query, $as)
+            public static function fromSub($query, $as)
             {    
-                return \Illuminate\Database\Query\Builder::selectSub($query, $as);
+                return \Illuminate\Database\Query\Builder::fromSub($query, $as);
+            }
+         
+            /**
+             * Add a raw from clause to the query.
+             *
+             * @param string $expression
+             * @param mixed $bindings
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function fromRaw($expression, $bindings = array())
+            {    
+                return \Illuminate\Database\Query\Builder::fromRaw($expression, $bindings);
             }
          
             /**
@@ -14951,6 +15866,20 @@ namespace  {
             }
          
             /**
+             * Add an "or where day" statement to the query.
+             *
+             * @param string $column
+             * @param string $operator
+             * @param mixed $value
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereDay($column, $operator, $value = null)
+            {    
+                return \Illuminate\Database\Query\Builder::orWhereDay($column, $operator, $value);
+            }
+         
+            /**
              * Add a "where month" statement to the query.
              *
              * @param string $column
@@ -14966,6 +15895,20 @@ namespace  {
             }
          
             /**
+             * Add an "or where month" statement to the query.
+             *
+             * @param string $column
+             * @param string $operator
+             * @param mixed $value
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereMonth($column, $operator, $value = null)
+            {    
+                return \Illuminate\Database\Query\Builder::orWhereMonth($column, $operator, $value);
+            }
+         
+            /**
              * Add a "where year" statement to the query.
              *
              * @param string $column
@@ -14978,6 +15921,20 @@ namespace  {
             public static function whereYear($column, $operator, $value = null, $boolean = 'and')
             {    
                 return \Illuminate\Database\Query\Builder::whereYear($column, $operator, $value, $boolean);
+            }
+         
+            /**
+             * Add an "or where year" statement to the query.
+             *
+             * @param string $column
+             * @param string $operator
+             * @param mixed $value
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereYear($column, $operator, $value = null)
+            {    
+                return \Illuminate\Database\Query\Builder::orWhereYear($column, $operator, $value);
             }
          
             /**
@@ -15831,7 +16788,7 @@ namespace  {
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 
-    class Charts extends \ConsoleTVs\Charts\Facades\Charts {}
+    class PDF extends \Barryvdh\DomPDF\Facade {}
 
     class Cart extends \Darryldecode\Cart\Facades\CartFacade {}
 
@@ -15840,6 +16797,14 @@ namespace  {
     class Image extends \Intervention\Image\Facades\Image {}
 
     class Date extends \Jenssegers\Date\Date {}
+
+    class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+
+    class PdfReport extends \Jimmyjs\ReportGenerator\Facades\PdfReportFacade {}
+
+    class ExcelReport extends \Jimmyjs\ReportGenerator\Facades\ExcelReportFacade {}
+
+    class CSVReport extends \Jimmyjs\ReportGenerator\Facades\CSVReportFacade {}
  
 }
 
