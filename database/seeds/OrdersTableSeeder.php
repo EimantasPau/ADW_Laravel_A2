@@ -15,7 +15,7 @@ class OrdersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
 
-        for($i = 0; $i<754; $i++){
+        for($i = 0; $i<250; $i++){
             $order = Order::create([
                 'user_id' => $faker->numberBetween(1, 100),
                 'total_price' => $faker->randomFloat(2, 300, 7000),
@@ -26,7 +26,7 @@ class OrdersTableSeeder extends Seeder
                 'postcode' => $faker->postcode(),
                 'country' => $faker->country()
             ]);
-            $product = \App\Product::findOrFail($faker->numberBetween(1, 1000));
+            $product = \App\Product::findOrFail($faker->numberBetween(1, 700));
             $order->products()->attach($product, ['line_quantity' => 1]);
 
         }

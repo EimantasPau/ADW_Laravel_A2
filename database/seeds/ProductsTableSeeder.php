@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for($i = 0; $i<1425; $i++){
+        for($i = 0; $i<700; $i++){
             DB::table('products')->insert([
                 'name' => $faker->sentence(2, true),
                 'description' => $faker->sentences(3, true),

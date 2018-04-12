@@ -48,7 +48,7 @@
                                         <a href="" onclick="event.preventDefault(); return confirm('Are you sure?') ? document.getElementById('destroy-form-{{$message->id}}').submit() : false">
                                             <i class="fas fa-2x fa-trash-alt red-text"></i>
                                         </a>
-                                        <form id="destroy-form-{{$message->id}}" action="{{route('admin.product.destroy', $message->id)}}" method="POST" style="">
+                                        <form id="destroy-form-{{$message->id}}" action="{{route('contact.destroy', $message->id)}}" method="POST" style="">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             {{--<button type="submit"><i class="fas fa-2x fa-trash-alt red-text"></i></button>--}}

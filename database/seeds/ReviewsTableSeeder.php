@@ -16,7 +16,7 @@ class ReviewsTableSeeder extends Seeder
         for($i = 0; $i<1475; $i++){
             \App\Review::create([
                 'user_id' => $faker->numberBetween(1, 1247),
-                'product_id' => $faker->numberBetween(1, 1425),
+                'product_id' => $faker->numberBetween(1, 700),
                 'body' => $faker->sentence(10),
                 'rating' => $faker->numberBetween(1,5),
                 'created_at' => $faker->dateTimeBetween('-1 month', 'now')

@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <!-- Styles -->
     @stack('styles')
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -67,12 +68,12 @@
                             <div class="widget-wrapper w-100">
                                 <div class="list-group">
                                     <a href="{{route('admin.home')}}" class="list-group-item waves-effect {{ Nav::isRoute('admin.home') }}">Home</a>
-                                    <a href="{{route('admin.product.index')}}" class="list-group-item waves-effect {{ Nav::isResource('products', '/admin') }}" >Product management</a>
-                                    <a href="{{route('admin.category.index')}}" class="list-group-item waves-effect {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
-                                    <a href="{{route('contact.index')}}" class="list-group-item waves-effect {{ Nav::isResource('contacts', '/admin') }}" >Contact form messages</a>
-                                    <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">Statistics</a>
-                                    <a href="{{route('admin.report.index')}}" class="list-group-item waves-effect {{ Nav::isResource('reports', '/admin') }}">Reports</a>
-                                    <a href="#" class="list-group-item waves-effect ">General settings</a>
+                                    <a href="{{route('admin.product.index')}}" class="list-group-item waves-effect {{ Nav::isResource('products', '/admin') }}" ><i class="fas fa-shopping-basket"></i> Product management</a>
+                                    <a href="{{route('admin.category.index')}}" class="list-group-item waves-effect {{ Nav::isResource('categories', '/admin') }}" ><i class="fas fa-list-ul"></i> Category management</a>
+                                    <a href="{{route('contact.index')}}" class="list-group-item waves-effect {{ Nav::isResource('contacts', '/admin') }}" ><i class="fas fa-envelope"></i> Contact form messages</a>
+                                    <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}"><i class="fas fa-chart-pie"></i> Statistics</a>
+                                    <a href="{{route('admin.report.index')}}" class="list-group-item waves-effect {{ Nav::isResource('reports', '/admin') }}"><i class="fas fa-chart-bar"></i> Reports</a>
+                                    <a href="#" class="list-group-item waves-effect "><i class="fas fa-cogs"></i> General settings</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +93,7 @@
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/mdb.min.js')}}"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
