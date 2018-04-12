@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name(),
                 'email' => $faker->email(),
                 'password' => '',
-                'created_at' => $faker->dateTimeBetween('-6 month', '6 month')
+                'created_at' => $faker->dateTimeBetween('-6 month', '6 month'),
+                'avatar_url' => 'http://www.vincegolangco.com/wp-content/uploads/2010/12/batman-for-facebook.jpg'
             ]);
         }
 

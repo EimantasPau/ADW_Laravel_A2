@@ -10,6 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <!-- Styles -->
     @stack('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -68,6 +69,7 @@
                                     <a href="{{route('admin.home')}}" class="list-group-item waves-effect {{ Nav::isRoute('admin.home') }}">Home</a>
                                     <a href="{{route('admin.product.index')}}" class="list-group-item waves-effect {{ Nav::isResource('products', '/admin') }}" >Product management</a>
                                     <a href="{{route('admin.category.index')}}" class="list-group-item waves-effect {{ Nav::isResource('categories', '/admin') }}" >Category management</a>
+                                    <a href="{{route('contact.index')}}" class="list-group-item waves-effect {{ Nav::isResource('contacts', '/admin') }}" >Contact form messages</a>
                                     <a href="{{route('admin.chart.index')}}" class="list-group-item waves-effect {{ Nav::isResource('charts', '/admin') }}">Statistics</a>
                                     <a href="{{route('admin.report.index')}}" class="list-group-item waves-effect {{ Nav::isResource('reports', '/admin') }}">Reports</a>
                                     <a href="#" class="list-group-item waves-effect ">General settings</a>

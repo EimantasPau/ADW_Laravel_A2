@@ -75,7 +75,7 @@
                         <hr>
                     </div>
                     <div class="text-center">
-                        <img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/' . ($product->image_path))}}" alt="" class="img-fluid">
                     </div>
                     <div class="file-field">
                         <div class="btn btn-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Recommended image size is 400x400 pixels.">

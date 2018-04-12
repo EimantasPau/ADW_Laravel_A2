@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "mdbootstrap": "^4.4.4",
+        "mdbootstrap": "^4.5.0",
         "moment": "^2.21.0",
         "vue-simple-spinner": "^1.2.8",
         "vuejs-datepicker": "^0.9.29"

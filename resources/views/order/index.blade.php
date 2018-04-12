@@ -28,6 +28,7 @@
                                        <th class="text-center">Products</th>
                                        <th class="text-center">Paid</th>
                                        <th class="text-center">Time of purchase</th>
+                                       <th class="text-center">Delivered to</th>
                                    </tr>
                                    </thead>
                                    <!--Table head-->
@@ -37,11 +38,20 @@
                                        <tr>
                                            <td class="text-left align-middle">
                                                @foreach($order->products as $product)
-                                                   <p><img src="{{asset(Storage::url($product->image_path))}}" alt="" class="img-fluid" style="max-width: 100px">{{$product->name}} x {{$product->pivot->line_quantity}}</p>
+                                                   <p><img src="{{asset('images/' . ($product->image_path))}}" alt="" class="img-fluid" style="max-width: 100px">{{$product->name}} x {{$product->pivot->line_quantity}}</p>
                                                @endforeach
                                            </td>
                                            <td class="text-center align-middle">£{{$order->total_price}}</td>
                                            <td class="text-center align-middle">{{$order->created_at}}</td>
+                                           <td class="align-middle">
+                                               <ul style="list-style: none;">
+                                                   <li class="font-weight-bold">{{$order->name}}</li>
+                                                   <li class="font-weight-bold">{{$order->street}}</li>
+                                                   <li class="font-weight-bold">{{$order->city}}</li>
+                                                   <li class="font-weight-bold">{{$order->postcode}}</li>
+                                                   <li class="font-weight-bold">{{$order->country}}</li>
+                                               </ul>
+                                           </td>
                                        </tr>
                                    @endforeach
                                    </tbody>

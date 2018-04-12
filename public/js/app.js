@@ -987,34 +987,8 @@ __webpack_require__(34);
 window.Vue = __webpack_require__(35);
 
 
-var reportPage = new Vue({
-    el: '#reportFormContainer',
-    components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker___default.a
-    },
-    data: function data() {
-        return {
-            reportModel: 'user',
-            dateFrom: '',
-            dateTo: '',
-            userOrderBy: 'name',
-            order: 'asc',
-            reportType: 'pdf',
-            orderOrderBy: 'total_price'
-        };
-    },
-    computed: {
-        isUserReport: function isUserReport() {
-            return this.reportModel === 'user';
-        },
-        isProductReport: function isProductReport() {
-            return this.reportModel === 'product';
-        },
-        isOrderReport: function isOrderReport() {
-            return this.reportModel === 'order';
-        }
-    }
-});
+Vue.component('datepicker', __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker___default.a);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

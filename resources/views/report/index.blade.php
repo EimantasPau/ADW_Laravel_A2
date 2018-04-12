@@ -17,7 +17,7 @@
                     <div class="row mt-4">
                         <div class="col">
                             <div class="md-form">
-                                <datepicker placeholder="Date from" name="dateFrom" v-model="dateFrom" format="yyyy-MM-dd"></datepicker>
+                                <datepicker placeholder="Date from" name="dateFrom" v-model="dateFrom" format="yyyy-MM-dd" input-class="w-100"></datepicker>
                                 @if ($errors->has('dateFrom'))
                                     <span class="red-text">{{ $errors->first('dateFrom') }}</span>
                                 @endif
@@ -25,7 +25,7 @@
                         </div>
                         <div class="col">
                            <div class="md-form">
-                               <datepicker placeholder="Date to" name="dateTo" v-model="dateTo" format="yyyy-MM-dd"></datepicker>
+                               <datepicker placeholder="Date to" name="dateTo" v-model="dateTo" format="yyyy-MM-dd" input-class="w-100"></datepicker>
                                @if ($errors->has('dateTo'))
                                    <span class="red-text">{{ $errors->first('dateTo') }}</span>
                                @endif
@@ -91,7 +91,34 @@
 
 @push('scripts')
     <script>
+        var reportPage = new Vue({
+            el: '#reportFormContainer',
+            components: {
 
+            },
+            data: function () {
+                return {
+                    reportModel: 'user',
+                    dateFrom: '',
+                    dateTo: '',
+                    userOrderBy: 'name',
+                    order: 'asc',
+                    reportType: 'pdf',
+                    orderOrderBy: 'total_price'
+                }
+            },
+            computed: {
+                isUserReport: function() {
+                    return this.reportModel === 'user';
+                },
+                isProductReport: function() {
+                    return this.reportModel === 'product';
+                },
+                isOrderReport: function() {
+                    return this.reportModel === 'order';
+                }
+            }
+        });
     </script>
 @endpush
 

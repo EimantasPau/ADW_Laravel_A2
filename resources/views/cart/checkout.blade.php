@@ -30,14 +30,45 @@
             key: 'pk_test_QYrjougFb8PzIw8Ri3plmK1M',
             image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
             locale: 'auto',
-            token: function(token) {
+            token: function(token, args) {
                 //Insert the token ID into the form so it gets submitted to the server
                 var form = document.getElementById('payment-form');
                 var hiddenInput = document.createElement('input');
                 hiddenInput.setAttribute('type', 'hidden');
                 hiddenInput.setAttribute('name', 'stripeToken');
                 hiddenInput.setAttribute('value', token.id);
+
+                var shippingName = document.createElement('input');
+                shippingName.setAttribute('type', 'hidden');
+                shippingName.setAttribute('name', 'name');
+                shippingName.setAttribute('value', args.shipping_name);
+
+                var street = document.createElement('input');
+                street.setAttribute('type', 'hidden');
+                street.setAttribute('name', 'street');
+                street.setAttribute('value', args.shipping_address_line1);
+
+                var postcode = document.createElement('input');
+                postcode.setAttribute('type', 'hidden');
+                postcode.setAttribute('name', 'postcode');
+                postcode.setAttribute('value', args.shipping_address_zip);
+
+                var city = document.createElement('input');
+                city.setAttribute('type', 'hidden');
+                city.setAttribute('name', 'city');
+                city.setAttribute('value', args.shipping_address_city);
+
+                var country = document.createElement('input');
+                country.setAttribute('type', 'hidden');
+                country.setAttribute('name', 'country');
+                country.setAttribute('value', args.shipping_address_country);
+
                 form.appendChild(hiddenInput);
+                form.appendChild(shippingName);
+                form.appendChild(street);
+                form.appendChild(postcode);
+                form.appendChild(city);
+                form.appendChild(country);
                 // Submit the form
                 form.submit();
             }

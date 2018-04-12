@@ -16,7 +16,7 @@
            <!--Product-->
            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
 
-               <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="">
+               <img class="img-fluid" src="{{asset('images/' . ($product->image_path))}}" alt="">
 
            </div>
            <!--/.Product-->
@@ -88,11 +88,11 @@
                                     <ul class="rating inline-ul list-unstyled">
                                         @foreach(range(1,5) as $i)
                                             @if($review->rating >= $i)
-                                            <li>
+                                            <li style="display: inline">
                                                 <i class="fa fa-star blue-text"></i>
                                             </li>
                                             @else
-                                            <li>
+                                            <li style="display: inline">
                                                 <i class="fa fa-star grey-text"></i>
                                             </li>
                                             @endif

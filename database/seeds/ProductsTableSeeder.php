@@ -20,7 +20,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => $faker->randomFloat(2, $min = 100, $max = 3000),
                 'quantity' => $faker->numberBetween(0, 20),
                 'category_id' => $faker->numberBetween(2,4),
-                'image_path' => "products/6P8FRFl239pyl4KUBX5Z1gJ2bMOnIPANeXUcWiqD.png",
+                'image_path' => "products/2Zmua2d1ZAKWy93bjgDsCdMPqIUDT9NGCYX6GoWx.png",
                 'created_at' => $faker->dateTimeBetween('-1 month', 'now')
             ]);
         }

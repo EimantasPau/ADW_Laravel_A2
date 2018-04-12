@@ -7,8 +7,8 @@
                     Sales statistics
                 </div>
                 <div class="card-body">
-                    {!! $chartSales->html() !!}
-                    {!! $chartProfits->html() !!}
+                    {!! $chartSales->html()!!}
+                    {!! $chartProfits->html()!!}
                     <form action="{{route('admin.chart.sales')}}" method="GET">
                         @csrf
                         <h4 class="h4-responsive">Options</h4>
@@ -64,7 +64,6 @@
 @endpush
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     {!! $chartSales->script()!!}
     {!! $chartProfits->script()!!}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>

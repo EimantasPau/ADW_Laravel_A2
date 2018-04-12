@@ -7,7 +7,7 @@
 
 // Bootstrap
 @import '~mdbootstrap/css/bootstrap';
-@import '~mdbootstrap/sass/mdb.scss';
+@import '~mdbootstrap/scss/mdb.scss';
 
 
 .navbar .dropdown-menu a:hover {
@@ -142,6 +142,31 @@ body {
 .date-input {
   padding: 5px;
   border: 2px solid green;
+}
+
+.list-group-item.active {
+  background-color: #1c2a48 !important;
+  border-color: #1c2a48;
+}
+
+.card-header {
+  background-color: #5e73a0;
+  color: #FFFFFF;
+  font-size: 1.25rem;
+}
+
+textarea {
+  width: 100%;
+}
+.pagination .page-item.active .page-link {
+  background-color: #1c2a48;
+  &:hover{
+    background-color: #1c2a48;
+  }
+}
+
+.card {
+  margin-bottom: 30px!important;
 }
 
 

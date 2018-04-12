@@ -7,6 +7,7 @@
             <div class="card-header">
                 Products
             </div>
+            <a href="{{route('admin.product.create')}}" class="btn btn-outline-success waves-effect float-right"><i class="fas fa-plus"></i> Add product</a>
             <div class="card-body">
                 @if($message = session('successMessage'))
                     <div class="alert alert-success" role="alert">
@@ -18,7 +19,7 @@
                         <strong>Sorry.</strong> {{$message}}
                     </div>
                 @endif
-                <a href="{{route('admin.product.create')}}" class="btn btn-outline-success waves-effect float-right"><i class="fas fa-plus"></i> Add product</a>
+
                 <div class="dataTables_wrapper">
                     <table id="productList" class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">
                         <thead>

@@ -12,34 +12,8 @@ require('jquery');
 window.Vue = require('vue');
 
 import Datepicker from 'vuejs-datepicker'
-var reportPage = new Vue({
-    el: '#reportFormContainer',
-    components: {
-        Datepicker
-    },
-    data: function () {
-        return {
-            reportModel: 'user',
-            dateFrom: '',
-            dateTo: '',
-            userOrderBy: 'name',
-            order: 'asc',
-            reportType: 'pdf',
-            orderOrderBy: 'total_price'
-        }
-    },
-    computed: {
-        isUserReport: function() {
-            return this.reportModel === 'user';
-        },
-        isProductReport: function() {
-            return this.reportModel === 'product';
-        },
-        isOrderReport: function() {
-            return this.reportModel === 'order';
-        }
-    }
-});
+Vue.component('datepicker',Datepicker);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

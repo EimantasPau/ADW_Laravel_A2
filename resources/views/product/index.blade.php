@@ -51,7 +51,7 @@
                     @foreach($products as $product)
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="card mb-r wow fadeIn align-items-stretch" data-wow-delay="0.4s">
-                                <img style="margin: auto; width: auto; height: 250px; max-width: 100%;" class="img-responsive" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
+                                <img style="margin: auto; width: auto; height: 250px; max-width: 100%;" class="img-responsive" src="{{asset('images/' . ($product->image_path))}}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="font-bold text-center">
                                         <strong style="white-space: nowrap;">{{$product->name}}</strong>

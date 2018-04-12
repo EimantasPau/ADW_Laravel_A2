@@ -21,12 +21,17 @@ Route::get('oauth/{driver}/callback', 'SocialAuthController@handleProviderCallba
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
+//contact us
+Route::get('/contact/create', 'MessageController@create')->name('contact.create');
+Route::post('/contact', 'MessageController@store')->name('contact.store');
+
+
 //Public product routes
-Route::get('/product/{product}', 'ProductController@show')->name('product.show');
+Route::get('/products/{product}', 'ProductController@show')->name('product.show');
 Route::get('/products', 'ProductController@index')->name('product.index');
 
 //Review
-Route::post('/product/{product}/reviews', 'ReviewController@store')->name('product.review.store');
+Route::post('/products/{product}/reviews', 'ReviewController@store')->name('product.review.store');
 
 
 //Admin dashboard
@@ -63,6 +68,10 @@ Route::prefix('admin')->group(function() {
         Route::get('/generate', 'ReportController@generate')->name('admin.report.generate');
     });
 
+    //Contact route
+    Route::get('/contacts', 'MessageController@index')->name('contact.index');
+    Route::get('/contacts/{contact}', 'MessageController@show')->name('contact.show');
+    Route::delete('/contacts/{contact}', 'MessageController@destroy')->name('contact.destroy');
 
 });
 

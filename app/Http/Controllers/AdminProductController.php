@@ -47,7 +47,7 @@ class AdminProductController extends Controller
         ]);
 
         $image = $request->file('image_path');
-        $image_path = Storage::putFile('products', $image);
+        $image_path = Storage::disk('uploads')->put('/products', $image);
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;

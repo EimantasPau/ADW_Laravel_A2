@@ -2,89 +2,33 @@
 
 @section('content')
     <!--Main layout-->
-    <div class="container-fluid">
-        <div class="row mt-4">
+    <div class="container">
 
-            <!--Sidebar-->
-            <div class="col-lg-2 offset-1 wow fadeIn" data-wow-delay="0.2s">
-
-                <div class="widget-wrapper">
-                    <h4 class="h4-responsive font-bold mb-3">Categories:</h4>
-                    <br>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item ">Smartphone</a>
-                        <a href="#" class="list-group-item active">Laptop</a>
-                        <a href="#" class="list-group-item">Camera</a>
-                        <a href="#" class="list-group-item">Headphones</a>
-                        <a href="#" class="list-group-item">Tablet</a>
-                    </div>
-                </div>
-
-                <div class="widget-wrapper">
-                    <h4 class="h4-responsive font-bold mb-3 mt-4">Price:</h4>
-                    <br>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">100$ - 399$</a>
-                        <a href="#" class="list-group-item">400$ - 899$</a>
-                        <a href="#" class="list-group-item">900$ - 1599$</a>
-                        <a href="#" class="list-group-item">1600$ - 7999$</a>
-                    </div>
-                </div>
+        <!--Section: Jumbotron-->
+        <section class="card wow fadeIn animated" style="background-image: url(&quot;https://mdbootstrap.com/img/Photos/Others/gradient1.jpg&quot;); visibility: visible; animation-name: fadeIn;">
+            <!-- Content -->
+            <div class="card-body text-white text-center py-5 px-5 my-5">
+                <h1 class="mb-4">
+                    <strong>Placeholder for shop name</strong>
+                </h1>
+                <p>
+                    <strong>Some text</strong>
+                </p>
+                <p class="mb-4">
+                    <strong>Lorem ipsum dolor sit amet, nemore inermis incorrupte nam ad. At congue dolorum ocurreret duo, autem legere delicatissimi ne nam, an sit prompta feugait gubergren. Cu vidisse antiopam appellantur cum. Vix atomorum accusamus interesset at, at expetendis adipiscing definiebas pri, usu luptatum argumentum ea. Eos id mazim petentium. Aliquip probatus no qui, vim justo propriae lucilius ut.</strong>
+                </p>
+                <a href="/products" class="btn btn-outline-white btn-lg waves-effect waves-light">Start shopping now</a>
             </div>
-            <!--/.Sidebar-->
+            <!-- Content -->
+        </section>
+        <!--Section: Jumbotron-->
+        <hr class="my-5">
+        <!--Section: Cards-->
+        <section class="text-center">
 
-            <!-- Product card-->
-            <div class="col-lg-8">
-                @if($message = session('successMessage'))
-                    <div class="alert alert-success" role="alert">
-                        <strong>Success!</strong> {{$message}}
-                    </div>
-                @endif
-                @if($message = session('errorMessage'))
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Sorry.</strong> {{$message}}
-                    </div>
-                @endif
-                <p>Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
-                {{ $products->links() }}
-                <div class="row d-flex align-items-stretch">
-                @foreach($products as $product)
+        </section>
+        <!--Section: Cards-->
 
-
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <div class="card mb-r wow fadeIn" data-wow-delay="0.4s">
-                            <img class="img-fluid" src="{{asset(Storage::url($product->image_path))}}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="font-bold">
-                                    <strong>{{$product->name}}</strong>
-                                    @if($product->quantity > 0)
-                                    <div class="badge badge-info">In stock</div>
-                                        @else
-                                        <div class="badge badge-danger">Out of stock</div>
-                                    @endif
-                                </h5>
-                                <hr>
-                                <h4>
-                                    <strong>£{{$product->price}}</strong>
-                                </h4>
-                                <p class="card-text mt-4">{{str_limit($product->description, 100, '...')}}
-                                </p>
-                                <a href="{{route('product.show', $product->id)}}" class="btn btn-outline-info waves-effect w-100"><i class="fas fa-info-circle"></i> Product information </a>
-                                <form action="{{route('cart.add', $product->id)}}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-success waves-effect w-100"><i class="fas fa-plus"></i> Add to cart </button>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                </div>
-                {{ $products->links() }}
-            </div>
-            <!--/Product card-->
-        </div>
     </div>
     <!--/.Main layout-->
 @endsection

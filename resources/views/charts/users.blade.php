@@ -7,7 +7,7 @@
                     User statistics
                 </div>
                 <div class="card-body">
-                    {!! $chart->html() !!}
+                    {!! $chart->html()!!}
                     <form action="{{route('admin.chart.users')}}" method="GET">
                         @csrf
                         <h4 class="h4-responsive">Options</h4>
@@ -63,7 +63,7 @@
 @endpush
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
     {!! $chart->script()!!}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>

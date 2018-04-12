@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderMade;
 use App\Order;
 use App\Product;
 use Cart;
@@ -46,7 +47,7 @@ class OrderController extends Controller
                 "source" => $request->input('stripeToken'), // obtained with Stripe.js
                 "description" => "Order payment."
             ));
-            $this->create();
+            $this->create($request);
             Cart::clear();
         } catch (Exception $e) {
                 return redirect()->route('order.checkout')->with('error', $e->getMessage());
@@ -54,18 +55,26 @@ class OrderController extends Controller
         return redirect()->route('product.index')->with('successMessage', 'Your payment has been successful!');
     }
 
-    public function create() {
-        $order = Order::create([
-            'user_id' => Auth::user()->id,
-            'total_price' => Cart::getTotal()
-        ]);
+    public function create(Request $request) {
 
+        $order = new Order([
+            'user_id' => Auth::user()->id,
+            'total_price' => Cart::getTotal(),
+            'name' => $request->input('name'),
+            'street' => $request->input('street'),
+            'postcode' => $request->input('postcode'),
+            'city' => $request->input('city'),
+            'country' => $request->input('country'),
+        ]);
+        $order->save();
         $orderLines = Cart::session(Auth::user()->id)->getContent();
         foreach($orderLines as $line) {
             $product = Product::findOrFail($line->id);
             $order->products()->attach($product, ['line_quantity' => $line->quantity]);
             $product->decrement('quantity', $line->quantity);
         }
+
+        event(new OrderMade($order));
 
     }
 

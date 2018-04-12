@@ -23,9 +23,9 @@
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                    <ul class="navbar-nav">
-                       <li class="nav-item d-flex align-items-stretch active" ><a class="nav-link waves-effect waves-light align-bottom" href="{{route('product.index')}}">Products</a></li>
+                       <li class="nav-item d-flex align-items-stretch {{ Nav::isResource('products') }}" ><a class="nav-link waves-effect waves-light align-bottom" href="{{route('product.index')}}">Products</a></li>
                        <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">About us</a></li>
-                       <li class="nav-item d-flex align-items-stretch"><a class="nav-link waves-effect waves-light align-bottom" href="">Contact</a></li>
+                       <li class="nav-item d-flex align-items-stretch {{ Nav::isResource('contact') }}"><a class="nav-link waves-effect waves-light align-bottom" href="{{route('contact.create')}}">Contact</a></li>
 
                    </ul>
                    <ul class="navbar-nav ml-auto">
