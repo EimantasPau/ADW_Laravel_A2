@@ -7,27 +7,54 @@
 
             <!--Sidebar-->
             <div class="col-lg-2 offset-xl-1 wow fadeIn" data-wow-delay="0.2s">
-
-                <div class="widget-wrapper">
-                    <h4 class="h4-responsive font-bold mb-3">Categories:</h4>
-                    <br>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item ">Smartphone</a>
-                        <a href="#" class="list-group-item active">Laptop</a>
-                        <a href="#" class="list-group-item">Camera</a>
-                        <a href="#" class="list-group-item">Headphones</a>
-                        <a href="#" class="list-group-item">Tablet</a>
+                <div class="card w-100">
+                    <div class="card-header">
+                        <i class="fa fa-search"></i> Search
                     </div>
-                </div>
+                    <div class="card-body">
+                        <form action="{{route('product.index')}}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="md-form">
+                                <input type="text" id="search" class="form-control" name="search">
+                                <label for="search">Search for</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="custom-select w-100" name="category_id">
+                                    <option disabled selected>Category</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="md-form">
+                                <input step="0.01" type="number" id="minimumPrice" class="form-control" name="minimumPrice">
+                                <label for="minimumPrice">Minimum price</label>
+                            </div>
+                            <div class="md-form">
+                                <input step="0.01" type="number" id="maximumPrice" class="form-control" name="maximumPrice">
+                                <label for="maximumPrice">Maximum price</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="custom-select w-100" name="orderBy">
+                                    <option disabled selected>Order by</option>
+                                    <option value="price">Price</option>
+                                    <option value="quantity">Quantity</option>
+                                </select>
+                            </div>
+                            <div class="md-form">
+                                <select class="custom-select w-100" name="paginate">
+                                    <option disabled selected>Results per page</option>
+                                    <option value="6">6</option>
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="48">48</option>
+                                </select>
+                            </div>
+                            <div class="md-form">
+                                <button type="submit" class="btn btn-primary w-100">Search!</button>
+                            </div>
+                        </form>
 
-                <div class="widget-wrapper">
-                    <h4 class="h4-responsive font-bold mb-3 mt-4">Price:</h4>
-                    <br>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">100$ - 399$</a>
-                        <a href="#" class="list-group-item">400$ - 899$</a>
-                        <a href="#" class="list-group-item">900$ - 1599$</a>
-                        <a href="#" class="list-group-item">1600$ - 7999$</a>
                     </div>
                 </div>
             </div>
@@ -45,8 +72,18 @@
                         <strong>Sorry.</strong> {{$message}}
                     </div>
                 @endif
-                <p class="mt-sm-4">Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
+                @if($message = session('searchMessage'))
+                    <div class="alert alert-info" role="alert">
+                        <strong>Showing results for: </strong> {{$message}}
+                    </div>
+                @endif
+                @if(count($products) > 0)
+                     <p class="mt-sm-4">Showing {{$products->firstItem()}} to {{$products->lastItem() }} out of {{$products->total()}} </p>
+                @else
+                     <p class="mt-sm-4">No products found.</p>
+                @endif
                 {{ $products->links() }}
+                {{--{{ $products->links() }}--}}
                 <div class="row d-flex align-items-stretch">
                     @foreach($products as $product)
                         <div class="col-xl-4 col-lg-6 col-md-6">

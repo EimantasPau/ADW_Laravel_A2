@@ -28,14 +28,15 @@ Route::post('/contact', 'MessageController@store')->name('contact.store');
 
 //Public product routes
 Route::get('/products/{product}', 'ProductController@show')->name('product.show');
-Route::get('/products', 'ProductController@index')->name('product.index');
+Route::any('/products', 'ProductController@index')->name('product.index');
+//Route::post('/products/search', 'ProductController@search')->name('product.search');
 
 //Review
 Route::post('/products/{product}/reviews', 'ReviewController@store')->name('product.review.store');
 
 
 //Admin dashboard
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
 
     //Product routes

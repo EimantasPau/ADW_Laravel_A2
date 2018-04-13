@@ -27,6 +27,6 @@
 </ul>
 
 
-<p>Total: £{{$order->total_price}}</p>
+<p><strong>Total: £{{$order->total_price}}</strong></p>
 </body>
 </html>
