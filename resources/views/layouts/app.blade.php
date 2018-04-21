@@ -16,7 +16,7 @@
 <body>
     <div id="app">
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3 sticky-top">
-           <div class="container-fluid">
+           <div class="container">
                <a class="navbar-brand" href="/">Search and discover.</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
                            </div>
                        </li>
                        <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <a class="nav-link dropdown-toggle waves-effect waves-light" style="min-width: 100px;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                <img class="rounded-circle mr-1" src="{{Auth::user()->avatar_url}}" alt="" style="max-width:30px">
                                {{ Auth::user()->name }} <span class="caret"></span>
                            </a>

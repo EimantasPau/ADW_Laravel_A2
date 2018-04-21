@@ -19,7 +19,7 @@
 <body>
 <div id="app">
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark mdb-color darken-3 sticky-top">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="#">Admin dashboard</a>
             <a class="navbar-brand" href="{{route('home')}}">Main page</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">

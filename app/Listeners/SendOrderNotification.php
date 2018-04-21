@@ -6,6 +6,7 @@ use App\Events\OrderMade;
 use App\Order;
 use App\Product;
 use App\User;
+use http\Exception;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
@@ -34,14 +35,18 @@ class SendOrderNotification
         $user = User::findOrFail($order->user_id);
         $orderWithRelations = Order::find($order->id);
         $products = $orderWithRelations->products()->get();
-        Mail::send('emails.order', ['order' => $orderWithRelations, 'products' => $products], function ($message) use ($user)
-        {
-            $message->subject('Order confirmation');
-            $message->from('noreply@shop.test', 'Eimantas Pauzuolis');
+        try {
+            Mail::send('emails.order', ['order' => $orderWithRelations, 'products' => $products], function ($message) use ($user)
+            {
+                $message->subject('Order confirmation');
+                $message->from('noreply@shop.test', 'Eimantas Pauzuolis');
 
-            $message->to($user->email);
+                $message->to($user->email);
 
-        });
+            });
+        } catch (\Exception $ex) {
+            redirect()->route('home');
+        }
 
 
     }
